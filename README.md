@@ -85,6 +85,25 @@ npm run lint       # najde chyby v kódu (web i skripty v add-onech)
 npm run format     # zformátuje všechny soubory
 ```
 
+## Minecraft – instalace a první spuštění
+
+Pro výrobu a testování add-onů potřebuješ na Windows **Minecraft for Windows (Bedrock Edition)**. Prodává se v balíčku **Minecraft: Java & Bedrock Edition for PC**, ale pro tento projekt spouštíme **Bedrock**, ne Java Edition.
+
+1. Otevři [Minecraft: Java & Bedrock Edition for PC](https://www.xbox.com/cs-cz/games/store/minecraft-java--bedrock-edition-for-pc/9NXP44L49SHJ) a pořiď hru pod svým Microsoft účtem (u dětského účtu může být potřeba schválení rodičem).
+2. Ve Windows otevři **Microsoft Store** nebo **Xbox aplikaci**, přihlas se stejným účtem a nainstaluj **Minecraft for Windows**. Pokud instalace požaduje **Gaming Services**, nainstaluj je přes Microsoft Store / Xbox aplikaci.
+3. Spusť **Minecraft for Windows**, ověř přihlášení Xbox účtem a zkus otevřít hlavní menu hry.
+4. V kořeni repozitáře spusť ve Windows PowerShellu setup (není potřeba správce):
+
+   ```powershell
+   .\setup\instalace-minecraft.ps1
+   ```
+
+   Skript vyhledá lokální složku Minecraftu, připraví vývojové adresáře a uloží cesty do `bedrock.local.json`. Tento soubor je lokální a Git ho ignoruje.
+
+5. Potom můžeš pokračovat příkazy v sekci [Add-ony](#add-ony).
+
+**Když instalace nefunguje:** Zkontroluj, že Microsoft Store a Xbox aplikace fungují pod stejným uživatelským účtem jako hra. Chybějící Gaming Services doinstaluj z Microsoft Store. Pokud Microsoft Store na daném účtu vůbec není, požádej taťku o pomoc; nepřepínej účet na správce a nezasahuj do systémových složek.
+
 ## Add-ony
 
 Add-on se založí, sestaví a nakopíruje do Minecraftu příkazy z kořene repa (jen jméno, o zbytek se postarají nástroje):
