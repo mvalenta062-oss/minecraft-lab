@@ -23,8 +23,22 @@ minecraft-lab/
 │       ├── README.md     <- co to je a jak to funguje
 │       ├── behavior_pack/  <- chování (co věci dělají)
 │       └── resource_pack/  <- vzhled (textury, modely, zvuky)
-└── tools/                <- pomocné skripty (zatím prázdné)
+└── tools/                <- pomocné skripty v Pythonu (uv), zatím prázdné
 ```
+
+## ⚠️ Pravidlo pro instalaci balíčků
+
+Balíčky (npm i Python) se **vždy** instalují jen přes naši nastavenou gateway.
+Na obou počítačích je přednastavená, takže `npm install` i `uv add` přes ni jdou samy.
+
+- **Nikdy** gateway neobcházej: žádný `--registry`, žádný vlastní `.npmrc`,
+  žádný `--index-url`, žádné `pip install` mimo uv.
+- Když instalace spadne s chybou `403` nebo `quarantined`, gateway ten balíček
+  zablokovala. **Zastav se** a řešení hledej jinde:
+  1. zkus starší nebo novější verzi balíčku,
+  2. zkus jiný balíček, který umí to samé,
+  3. když nic nepomůže, řekni taťkovi.
+- Chyba gateway není chyba tvoje. Je to pojistka, že si do počítače nestáhneme něco škodlivého.
 
 ## Web
 
@@ -53,6 +67,18 @@ git push origin v1.0
 
 GitHub pak web sám sestaví a nahraje (trvá to asi minutu, průběh je v záložce *Actions*).
 Druhá možnost je spustit akci *Publikovat web* ručně v záložce Actions.
+
+## Nástroje
+
+Pomocné skripty v `tools/` jsou v Pythonu a spouští je `uv`:
+
+```bash
+cd tools
+uv sync             # jen poprvé
+uv run nazev.py
+```
+
+Víc je v [tools/README.md](tools/README.md).
 
 ## Výtvory
 
