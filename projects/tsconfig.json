@@ -1,0 +1,14 @@
+{
+  "_poznamka": "Nastavení TypeScriptu pro skripty add-onů (projects/*/behavior_pack/scripts). Čte ho VS Code i build.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2023"],
+    "types": [],
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["*.d.ts", "*/behavior_pack/scripts/**/*.ts"]
+}

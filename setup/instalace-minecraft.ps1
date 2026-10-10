@@ -3,7 +3,9 @@
 
   Najde datovou složku Minecraftu (com.mojang), ověří, že je Minecraft
   nainstalovaný, a vytvoří v ní složky development_behavior_packs
-  a development_resource_packs. Tam se později budou kopírovat naše add-ony.
+  a development_resource_packs. Tam se kopírují naše add-ony.
+  Nalezenou cestu zapíše do bedrock.local.json v kořeni repa (soubor je
+  ignorovaný Gitem), odkud ji bere npm run bedrock:deploy.
 
   Spuštění (PowerShell, nemusí být jako správce):
     powershell -ExecutionPolicy Bypass -File .\instalace-minecraft.ps1
@@ -36,7 +38,7 @@ $Kandidati = @(
 )
 $VyvojoveSlozky = "development_behavior_packs", "development_resource_packs"
 
-Krok "1/3 Je Minecraft nainstalovaný?"
+Krok "1/4 Je Minecraft nainstalovaný?"
 $balicky = @()
 try {
   $balicky = @(Get-AppxPackage -Name "Microsoft.Minecraft*" -ErrorAction Stop)
@@ -46,7 +48,7 @@ try {
 foreach ($b in $balicky) { Write-Host "Nalezeno: $($b.Name) $($b.Version)" }
 if ($balicky.Count -eq 0) { Write-Host "Minecraft jsem v nainstalovaných aplikacích nenašel." }
 
-Krok "2/3 Datová složka Minecraftu (com.mojang)"
+Krok "2/4 Datová složka Minecraftu (com.mojang)"
 $comMojang = $null
 if ($Cesta) {
   Write-Host "Cesta zadaná ručně: $Cesta"
@@ -68,7 +70,7 @@ if (-not $comMojang) {
 }
 Write-Host "Používám: $comMojang"
 
-Krok "3/3 Složky pro vývoj add-onů"
+Krok "3/4 Složky pro vývoj add-onů"
 foreach ($nazev in $VyvojoveSlozky) {
   $slozka = Join-Path $comMojang $nazev
   if (Test-Path $slozka -PathType Container) {
@@ -79,6 +81,22 @@ foreach ($nazev in $VyvojoveSlozky) {
   }
 }
 
+Krok "4/4 Zápis cesty pro nástroje (bedrock.local.json)"
+$koren = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+$konfig = Join-Path $koren "bedrock.local.json"
+$stavajici = $null
+if (Test-Path $konfig) {
+  try { $stavajici = (Get-Content $konfig -Raw | ConvertFrom-Json).comMojang } catch { $stavajici = $null }
+}
+if ($stavajici -eq $comMojang) {
+  Write-Host "  [je]       $konfig"
+} else {
+  $json = @{ comMojang = $comMojang } | ConvertTo-Json
+  # Bez BOM, aby soubor přečetl i Node.js.
+  [IO.File]::WriteAllText($konfig, $json + "`n", [Text.UTF8Encoding]::new($false))
+  Write-Host "  [zapsáno]  $konfig"
+}
+
 Write-Host "`nHotovo. Minecraft je připravený na vývoj add-onů." -ForegroundColor Green
 Write-Host "Datová složka: $comMojang"
-Write-Host "Add-ony se budou kopírovat do development_behavior_packs a development_resource_packs."
+Write-Host "Add-on do ní nakopíruje: npm run bedrock:deploy <jmeno-addonu> (v kořeni repa)."

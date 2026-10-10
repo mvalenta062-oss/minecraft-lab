@@ -25,6 +25,8 @@ minecraft-lab/
 │       ├── README.md     <- co to je a jak to funguje
 │       ├── behavior_pack/  <- chování (co věci dělají)
 │       └── resource_pack/  <- vzhled (textury, modely, zvuky)
+├── bedrock/              <- nástroje pro add-ony (build, deploy, .mcaddon), viz bedrock/README.md
+├── dist/                 <- sestavené add-ony (Git je ignoruje)
 ├── tools/                <- pomocné skripty v Pythonu (uv), zatím prázdné
 └── setup/                <- skripty na nastavení nového počítače (Windows 11)
 ```
@@ -82,6 +84,20 @@ npm install        # jen poprvé, v kořeni repa
 npm run lint       # najde chyby v kódu (web i skripty v add-onech)
 npm run format     # zformátuje všechny soubory
 ```
+
+## Add-ony
+
+Add-on se založí, sestaví a nakopíruje do Minecraftu příkazy z kořene repa (jen jméno, o zbytek se postarají nástroje):
+
+```bash
+npm install                            # jen poprvé, v kořeni repa
+npm run bedrock:new magicky-blok       # založí projects/magicky-blok
+npm run bedrock:deploy magicky-blok    # sestaví a nakopíruje do Minecraftu
+npm run bedrock:package magicky-blok   # zabalí do .mcaddon pro kamarády
+```
+
+Kde má Minecraft svou složku, si nástroje přečtou z `bedrock.local.json` (vytvoří ho `setup/instalace-minecraft.ps1`).
+Podrobnosti jsou v [bedrock/README.md](bedrock/README.md).
 
 ## Nástroje
 

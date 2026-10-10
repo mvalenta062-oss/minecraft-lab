@@ -5,14 +5,25 @@
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "bedrock:new": "node bedrock/cli.js new",
+    "bedrock:validate": "node bedrock/cli.js validate",
+    "bedrock:build": "node bedrock/cli.js build",
+    "bedrock:deploy": "node bedrock/cli.js deploy",
+    "bedrock:package": "node bedrock/cli.js package",
+    "bedrock:test": "node --test \"bedrock/test/**/*.test.js\""
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@minecraft/server": "2.10.0",
+    "esbuild": "^0.28.2",
     "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "fflate": "^0.8.3",
+    "globals": "^17.13.0",
     "prettier": "^3.9.10",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.1"
   }
 }

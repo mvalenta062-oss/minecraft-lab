@@ -1,11 +1,10 @@
 # Nástroje
 
-Sem budeme dávat pomocné skripty, až je budeme potřebovat.
-Například:
+Sem budeme dávat pomocné skripty v Pythonu, až je budeme potřebovat
+(třeba úpravy obrázků nebo generování textur).
 
-- kontrolu, že JSON soubory v add-onu nemají chybu,
-- zabalení add-onu do souboru `.mcaddon`,
-- zkopírování add-onu do Minecraftu na notebooku.
+Kontrola, build, kopírování do Minecraftu a balení add-onů jsou v Node.js
+ve složce [bedrock/](../bedrock/README.md) a spouští se `npm run bedrock:...` z kořene repa.
 
 Zatím tu žádný skript není a je to tak správně.
 

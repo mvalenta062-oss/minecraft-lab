@@ -55,6 +55,13 @@ if ($comMojang) {
     if (Test-Path (Join-Path $comMojang $n) -PathType Container) { Ok "složka $n" } else { Chyba "chybí složka $n" }
   }
 } else { Chyba "datová složka Minecraftu nenalezena (Minecraft není nainstalovaný nebo ještě nebyl spuštěn)" }
+$konfig = Join-Path $PSScriptRoot "..\bedrock.local.json"
+if (Test-Path $konfig) {
+  $zapsana = $null
+  try { $zapsana = (Get-Content $konfig -Raw | ConvertFrom-Json).comMojang } catch { $zapsana = $null }
+  if ($zapsana -and (Test-Path $zapsana -PathType Container)) { Ok "bedrock.local.json ukazuje na $zapsana" }
+  else { Chyba "bedrock.local.json ukazuje na neexistující složku (spusť znovu instalace-minecraft.ps1)" }
+} else { Chyba "chybí bedrock.local.json v kořeni repa (vytvoří ho instalace-minecraft.ps1)" }
 
 Write-Host ""
 if ($chyby -eq 0) { Write-Host "Vše je nastavené." -ForegroundColor Green }

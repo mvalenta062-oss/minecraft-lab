@@ -9,11 +9,15 @@ desktop.ini
 !.vscode/settings.json
 .idea/
 
-# Zabalené add-ony (ty dáváme do GitHub Releases, ne do repozitáře)
+# Zabalené add-ony a build (dist/ a katalog pro web generuje npm run bedrock:package)
 *.mcaddon
 *.mcpack
 *.mcworld
 dist/
+web/public/addony/
+
+# Lokální nastavení (cesta k Minecraftu na tomhle počítači, píše setup/instalace-minecraft.ps1)
+bedrock.local.json
 
 # Node.js (web a budoucí nástroje)
 node_modules/

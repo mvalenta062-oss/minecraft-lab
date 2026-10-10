@@ -1,0 +1,6 @@
+{
+  "_poznamka": "Cílová verze Minecraftu a k ní patřící verze @minecraft/server (stabilní). Při změně verze serveru uprav i package.json a spusť npm install.",
+  "minecraft": [1, 26, 40],
+  "server": "2.10.0",
+  "distribuce": "web/public/addony"
+}

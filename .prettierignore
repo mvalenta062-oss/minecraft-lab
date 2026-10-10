@@ -4,3 +4,5 @@ dist/
 package-lock.json
 uv.lock
 *.tsbuildinfo
+web/public/addony/
+bedrock.local.json

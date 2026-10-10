@@ -3,12 +3,12 @@
 Tři skripty, které nainstalují vše potřebné, nastaví gateway a připraví Minecraft.
 Stačí je spustit a vložit token. Každý jde spustit i víckrát, co už je, přeskočí.
 
-| Skript                    | Co udělá                                                                                     |
-| ------------------------- | -------------------------------------------------------------------------------------------- |
-| `instalace-node.ps1`      | Git, Node.js LTS, `~/.npmrc` na gateway, přihlášení do proměnné `SGW_AUTH`, zkouška          |
-| `instalace-python.ps1`    | uv, Python 3.13, proměnné `UV_INDEX_SHIELDOO_*`, zkouška v `tools/`                          |
-| `instalace-minecraft.ps1` | najde datovou složku Minecraft Bedrock (`com.mojang`) a založí v ní složky pro vývoj add-onů |
-| `kontrola.ps1`            | rychlá kontrola, že je vše nastavené (`kontrola.sh` je totéž pro Linux)                      |
+| Skript                    | Co udělá                                                                                                                           |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `instalace-node.ps1`      | Git, Node.js LTS, `~/.npmrc` na gateway, přihlášení do proměnné `SGW_AUTH`, zkouška                                                |
+| `instalace-python.ps1`    | uv, Python 3.13, proměnné `UV_INDEX_SHIELDOO_*`, zkouška v `tools/`                                                                |
+| `instalace-minecraft.ps1` | najde datovou složku Minecraft Bedrock (`com.mojang`), založí v ní složky pro vývoj add-onů a cestu zapíše do `bedrock.local.json` |
+| `kontrola.ps1`            | rychlá kontrola, že je vše nastavené (`kontrola.sh` je totéž pro Linux)                                                            |
 
 ## Postup
 
@@ -32,7 +32,8 @@ Stačí je spustit a vložit token. Každý jde spustit i víckrát, co už je, 
    ```
 
 Minecraft musí být nainstalovaný z Microsoft Store a aspoň jednou spuštěný (až do hlavního menu),
-jinak ještě nemá datovou složku a skript to řekne. Minecraft nic nemění, jen založí dvě složky.
+jinak ještě nemá datovou složku a skript to řekne. Minecraft nic nemění, jen založí dvě složky
+a nalezenou cestu zapíše do `bedrock.local.json` v kořeni repa (odtud ji bere `npm run bedrock:deploy`).
 Když Minecraft ukládá data jinam, dá se cesta zadat: `-Cesta "...\com.mojang"`.
 
 Token jde zadat i rovnou jako parametr `-Token "..."`,
@@ -65,7 +66,8 @@ Nebo prostě složku smaž a repo stáhni znovu.
   (Nastavení → Systém → Upřesnit → Proměnné prostředí)
 - data Minecraftu: `%APPDATA%\Minecraft Bedrock\Users\Shared\games\com.mojang` (nový Minecraft od 1.21.120),
   starší verze `%LOCALAPPDATA%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang`.
-  Uvnitř jsou `development_behavior_packs` a `development_resource_packs`, kam půjdou naše add-ony.
+  Uvnitř jsou `development_behavior_packs` a `development_resource_packs`, kam `npm run bedrock:deploy` kopíruje naše add-ony.
+- `bedrock.local.json` v kořeni repa: `{ "comMojang": "C:\\...\\com.mojang" }`, jen pro tenhle počítač, Git ho ignoruje
 
 ## Výměna tokenu
 
