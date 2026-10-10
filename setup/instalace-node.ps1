@@ -5,11 +5,14 @@
   Spuštění (PowerShell, nemusí být jako správce, winget si o práva řekne sám):
     powershell -ExecutionPolicy Bypass -File .\instalace-node.ps1
 
-  Skript se zeptá na token. Token se uloží jen do uživatelské proměnné
-  prostředí SGW_AUTH, soubor .npmrc se na něj pouze odkazuje.
+  Skript se zeptá na jméno (project) a token. Podle postupu gateway z nich
+  udělá base64("jmeno:token") a uloží to do uživatelské proměnné prostředí
+  SGW_AUTH, soubor .npmrc se na ni pouze odkazuje.
 #>
 param(
-  # Hodnota pro SGW_AUTH, stejná jako na taťkově počítači. Když ji nezadáš, skript se zeptá.
+  # Jméno pro gateway (project), třeba "mata". Když ho nezadáš, skript se zeptá.
+  [string]$Uzivatel,
+  # Token pro gateway. Když ho nezadáš, skript se zeptá (vstup se nezobrazuje).
   [string]$Token
 )
 
@@ -44,16 +47,20 @@ Krok "2/4 Node.js LTS (22 nebo novější)"
 Nainstaluj "node" "OpenJS.NodeJS.LTS" "Node.js"
 Write-Host "node $(node --version), npm $(npm --version)"
 
-Krok "3/4 Token pro gateway"
+Krok "3/4 Přihlášení ke gateway"
+if (-not $Uzivatel) { $Uzivatel = Read-Host "Jméno pro gateway (project, třeba mata)" }
 if (-not $Token) {
-  $secure = Read-Host "Vlož hodnotu SGW_AUTH (při psaní se nic nezobrazuje)" -AsSecureString
+  $secure = Read-Host "Vlož token (při psaní se nic nezobrazuje)" -AsSecureString
   $Token  = [System.Net.NetworkCredential]::new("", $secure).Password
 }
-if (-not $Token) { throw "Token je prázdný." }
+if (-not $Uzivatel -or -not $Token) { throw "Jméno nebo token je prázdné." }
 
-# Uloží token do uživatelské proměnné prostředí (přežije restart) i do téhle relace
-[Environment]::SetEnvironmentVariable("SGW_AUTH", $Token, "User")
-$env:SGW_AUTH = $Token
+# npm chce přihlášení jako base64("jmeno:token"), viz postup na webu gateway
+$auth = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("${Uzivatel}:${Token}"))
+
+# Uloží to do uživatelské proměnné prostředí (přežije restart) i do téhle relace
+[Environment]::SetEnvironmentVariable("SGW_AUTH", $auth, "User")
+$env:SGW_AUTH = $auth
 
 # .npmrc v domovské složce: registry = gateway, přihlášení bere z proměnné SGW_AUTH
 $npmrc = Join-Path $HOME ".npmrc"

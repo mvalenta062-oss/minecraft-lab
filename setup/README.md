@@ -5,7 +5,7 @@ Stačí je spustit a vložit token. Každý jde spustit i víckrát, co už je, 
 
 | Skript | Co udělá |
 | --- | --- |
-| `instalace-node.ps1` | Git, Node.js LTS, `~/.npmrc` na gateway, token do proměnné `SGW_AUTH`, zkouška |
+| `instalace-node.ps1` | Git, Node.js LTS, `~/.npmrc` na gateway, přihlášení do proměnné `SGW_AUTH`, zkouška |
 | `instalace-python.ps1` | uv, Python 3.13, proměnné `UV_INDEX_SHIELDOO_*`, zkouška v `tools/` |
 | `kontrola.ps1` | rychlá kontrola, že je vše nastavené (`kontrola.sh` je totéž pro Linux) |
 
@@ -20,8 +20,8 @@ Stačí je spustit a vložit token. Každý jde spustit i víckrát, co už je, 
    powershell -ExecutionPolicy Bypass -File .\instalace-python.ps1
    ```
 
-4. Když se skript zeptá, vlož přihlašovací údaje (při psaní se nic nezobrazuje, to je správně).
-   Node chce hodnotu `SGW_AUTH`, Python krátký login a token pro uv. Obojí dá taťka.
+4. Když se skript zeptá, vlož jméno (třeba `mata`) a token od taťky.
+   Při psaní tokenu se nic nezobrazuje, to je správně. Oba skripty chtějí totéž jméno a token.
    Winget si může říct o potvrzení správce, klikni *Ano*.
 5. Zavři a znovu otevři PowerShell a spusť kontrolu:
 
@@ -29,12 +29,12 @@ Stačí je spustit a vložit token. Každý jde spustit i víckrát, co už je, 
    powershell -ExecutionPolicy Bypass -File .\kontrola.ps1
    ```
 
-Údaje jdou zadat i rovnou jako parametry, třeba `-Token "..."`,
+Údaje jdou zadat i rovnou jako parametry, `-Uzivatel mata -Token "..."`,
 ale pak zůstane v historii PowerShellu, takže radši nech skript zeptat se.
 
 ## Kde co je po instalaci
 
-- `%USERPROFILE%\.npmrc` – npm registry = gateway, heslo bere z proměnné `SGW_AUTH`
+- `%USERPROFILE%\.npmrc` – npm registry = gateway, přihlášení bere z proměnné `SGW_AUTH` (base64 z `jmeno:token`)
 - proměnné prostředí uživatele: `SGW_AUTH`, `UV_INDEX_SHIELDOO_USERNAME`, `UV_INDEX_SHIELDOO_PASSWORD`
   (Nastavení → Systém → Upřesnit → Proměnné prostředí)
 

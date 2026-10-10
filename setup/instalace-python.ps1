@@ -40,7 +40,7 @@ if (Get-Command uv -ErrorAction SilentlyContinue) {
 uv --version
 
 Krok "2/4 Přihlášení ke gateway"
-if (-not $Uzivatel) { $Uzivatel = Read-Host "Uživatelské jméno pro gateway (krátký login, ne e-mail)" }
+if (-not $Uzivatel) { $Uzivatel = Read-Host "Jméno pro gateway (project, stejné jako u Node)" }
 if (-not $Token) {
   $secure = Read-Host "Vlož token (při psaní se nic nezobrazuje)" -AsSecureString
   $Token  = [System.Net.NetworkCredential]::new("", $secure).Password
