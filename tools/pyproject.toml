@@ -1,0 +1,14 @@
+[project]
+name = "tools"
+version = "0.1.0"
+description = "Pomocné skripty pro Minecraft Factory"
+requires-python = ">=3.13"
+dependencies = []
+
+# Balíčky se stahují přes naši npm/pypi gateway, ne přímo z PyPI.
+# Přihlášení bere uv z proměnných prostředí
+# UV_INDEX_SHIELDOO_USERNAME a UV_INDEX_SHIELDOO_PASSWORD.
+[[tool.uv.index]]
+name = "shieldoo"
+url = "https://pypi.shieldoo-gate.cloudfield.cz/simple/"
+default = true
