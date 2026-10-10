@@ -3,8 +3,9 @@
 Thumbs.db
 desktop.ini
 
-# Editor
-.vscode/
+# Editor (z .vscode verzujeme jen doporučená rozšíření)
+.vscode/*
+!.vscode/extensions.json
 .idea/
 
 # Zabalené add-ony (ty dáváme do GitHub Releases, ne do repozitáře)

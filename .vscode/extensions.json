@@ -1,0 +1,17 @@
+{
+  // Doporučená rozšíření pro VS Code. Při otevření složky je VS Code nabídne
+  // k instalaci (vpravo dole „Install All"), nebo: Ctrl+Shift+X -> „@recommended".
+  "recommendations": [
+    // Minecraft Bedrock Development – našeptávání a kontrola souborů add-onů
+    "blockceptionltd.blockceptionvscodeminecraftbedrockdevelopmentextension",
+    // ESLint – kontrola TypeScriptu/JavaScriptu (web)
+    "dbaeumer.vscode-eslint",
+    // Prettier – automatické formátování
+    "esbenp.prettier-vscode",
+    // Python + Pylance – pro skripty v tools/
+    "ms-python.python",
+    "ms-python.vscode-pylance"
+  ],
+  // Rozšíření, která VS Code naopak nemá nabízet.
+  "unwantedRecommendations": []
+}

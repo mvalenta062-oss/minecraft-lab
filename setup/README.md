@@ -32,6 +32,13 @@ Stačí je spustit a vložit token. Každý jde spustit i víckrát, co už je, 
 Token jde zadat i rovnou jako parametr `-Token "..."`,
 ale pak zůstane v historii PowerShellu, takže radši nech skript zeptat se.
 
+## VS Code
+
+Nainstaluj [VS Code](https://code.visualstudio.com/) a otevři v něm celou složku repa.
+VS Code sám nabídne doporučená rozšíření (vpravo dole *Install All*), seznam je
+v `.vscode/extensions.json`: podpora Bedrock add-onů, ESLint, Prettier, Python a Pylance.
+Když nabídka zmizí, najdeš je v Rozšířeních (Ctrl+Shift+X) po zadání `@recommended`.
+
 ## Kde co je po instalaci
 
 - `%USERPROFILE%\.npmrc` – npm registry = gateway, přihlášení bere z proměnné `SGW_AUTH` (base64 z `mv-minecraft:token`)
