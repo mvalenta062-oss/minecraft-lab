@@ -1,0 +1,17 @@
+# Soubory operačního systému
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Zabalené add-ony (ty dáváme do GitHub Releases, ne do repozitáře)
+*.mcaddon
+*.mcpack
+*.mcworld
+dist/
+
+# Až budeme používat Node.js
+node_modules/
