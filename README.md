@@ -11,6 +11,8 @@ Je to projekt na učení: nejdřív něco vyrobíme, potom zjistíme, jak to fun
 ```text
 minecraft-lab/
 ├── README.md             <- tenhle soubor
+├── eslint.config.js      <- pravidla pro kontrolu kódu (ESLint), .prettierrc = formátování
+├── .vscode/              <- doporučená rozšíření a nastavení VS Code
 ├── PROJECT.md            <- plán a pravidla celého projektu
 ├── web/                  <- web (React + TypeScript + MUI)
 │   ├── src/data.ts       <- výtvory, deník a plán (tohle se mění nejčastěji)
@@ -67,8 +69,19 @@ git tag v1.0
 git push origin v1.0
 ```
 
-GitHub pak web sám sestaví a nahraje (trvá to asi minutu, průběh je v záložce *Actions*).
-Druhá možnost je spustit akci *Publikovat web* ručně v záložce Actions.
+GitHub pak web sám sestaví a nahraje (trvá to asi minutu, průběh je v záložce _Actions_).
+Druhá možnost je spustit akci _Publikovat web_ ručně v záložce Actions.
+
+## Kontrola a formátování kódu
+
+V kořeni repa je ESLint (hledá chyby v TypeScriptu a JavaScriptu) a Prettier (sjednocuje formátování
+kódu, JSON i Markdownu). Ve VS Code se soubor zformátuje sám při uložení. Ručně:
+
+```bash
+npm install        # jen poprvé, v kořeni repa
+npm run lint       # najde chyby v kódu (web i skripty v add-onech)
+npm run format     # zformátuje všechny soubory
+```
 
 ## Nástroje
 
@@ -84,8 +97,8 @@ Víc je v [tools/README.md](tools/README.md).
 
 ## Výtvory
 
-| Název | Stav | Složka |
-| --- | --- | --- |
+| Název        | Stav    | Složka                                       |
+| ------------ | ------- | -------------------------------------------- |
 | První add-on | v plánu | [projects/first-addon](projects/first-addon) |
 
 Každý add-on má svou složku v `projects/`. Uvnitř je vždy:

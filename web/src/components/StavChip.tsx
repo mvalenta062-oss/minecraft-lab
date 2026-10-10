@@ -10,11 +10,5 @@ const BARVA_STAVU: Record<Stav, string> = {
 
 /** Malý štítek "V plánu / Děláme / Hotovo" */
 export function StavChip({ stav }: { stav: Stav }) {
-  return (
-    <Chip
-      label={NAZVY_STAVU[stav]}
-      size="small"
-      sx={{ bgcolor: BARVA_STAVU[stav], color: barvy.kamenTmavy }}
-    />
-  );
+  return <Chip label={NAZVY_STAVU[stav]} size="small" sx={{ bgcolor: BARVA_STAVU[stav], color: barvy.kamenTmavy }} />;
 }

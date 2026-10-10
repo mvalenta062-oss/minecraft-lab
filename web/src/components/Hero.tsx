@@ -39,7 +39,12 @@ export function Hero() {
 
         <Typography
           variant="h1"
-          sx={{ fontSize: "clamp(2.6rem, 8vw, 4.5rem)", color: "#fff", textShadow: `4px 4px 0 ${barvy.medTmava}`, mb: 1 }}
+          sx={{
+            fontSize: "clamp(2.6rem, 8vw, 4.5rem)",
+            color: "#fff",
+            textShadow: `4px 4px 0 ${barvy.medTmava}`,
+            mb: 1,
+          }}
         >
           Minecraft Factory
         </Typography>

@@ -6,6 +6,7 @@ desktop.ini
 # Editor (z .vscode verzujeme jen doporučená rozšíření)
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea/
 
 # Zabalené add-ony (ty dáváme do GitHub Releases, ne do repozitáře)

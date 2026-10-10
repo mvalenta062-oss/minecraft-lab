@@ -1,0 +1,7 @@
+{
+  // Nastavení VS Code pro tohle repo: formátovat Prettierem při uložení.
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[python]": { "editor.defaultFormatter": "ms-python.python" },
+  "eslint.workingDirectories": ["."]
+}

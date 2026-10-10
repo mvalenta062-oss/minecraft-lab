@@ -26,7 +26,15 @@ export function Plan() {
               borderColor: "divider",
             }}
           >
-            <Typography sx={{ fontFamily: "Pixelify Sans", fontSize: "1.6rem", color: barvy.med, textAlign: "center", lineHeight: 1 }}>
+            <Typography
+              sx={{
+                fontFamily: "Pixelify Sans",
+                fontSize: "1.6rem",
+                color: barvy.med,
+                textAlign: "center",
+                lineHeight: 1,
+              }}
+            >
               {i}
             </Typography>
             <div>

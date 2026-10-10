@@ -44,7 +44,13 @@ export function Hlavicka() {
         <Typography
           component="a"
           href="#"
-          sx={{ fontFamily: "Pixelify Sans", fontSize: "1.3rem", color: "text.primary", textDecoration: "none", flexGrow: 1 }}
+          sx={{
+            fontFamily: "Pixelify Sans",
+            fontSize: "1.3rem",
+            color: "text.primary",
+            textDecoration: "none",
+            flexGrow: 1,
+          }}
         >
           Minecraft Factory
         </Typography>

@@ -34,31 +34,31 @@ Vytvořit prostředí, ve kterém může dítě **samostatně vymýšlet vlastn�
 
 ## 4. Fáze projektu
 
-| Fáze | Co uděláme | Výsledek |
-| --- | --- | --- |
-| **0. Připravit dílnu** | Nastavit Windows, Minecraft Bedrock, editor, nástroje a repozitář. Ověřit jednoduchý testovací add-on. | Funkční prostředí a záloha výchozího stavu. |
-| **1. První vlastní výtvor** | Autor vybere nápad. Vytvoříme první jednoduchý blok, předmět nebo jinou drobnou úpravu. | Něco vlastního přímo ve hře. |
-| **2. Vzhled a vlastnosti** | Upravíme textury či modely a základní vlastnosti pomocí JSON. | Výtvor dostává vlastní identitu a chování. |
-| **3. Herní mechaniky** | Přidáme recepty, interakce, efekty a jednoduchá pravidla. | Výtvor je zajímavý i při hraní. |
-| **4. První programování** | Podle potřeby využijeme Bedrock Script API a JavaScript / TypeScript. | Vlastní logika přesahující jednoduchou konfiguraci. |
-| **5. Sdílení a vydání** | Otestujeme kompatibilitu, připravíme `.mcaddon`, vytvoříme verzi a nabídneme ji kamarádům. | První veřejně či soukromě sdílený add-on. |
-| **6. Další rozvoj** | Nové schopnosti, větší projekty, opravy a další vydání. | Dlouhodobě rostoucí sbírka výtvorů. |
+| Fáze                        | Co uděláme                                                                                             | Výsledek                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| **0. Připravit dílnu**      | Nastavit Windows, Minecraft Bedrock, editor, nástroje a repozitář. Ověřit jednoduchý testovací add-on. | Funkční prostředí a záloha výchozího stavu.         |
+| **1. První vlastní výtvor** | Autor vybere nápad. Vytvoříme první jednoduchý blok, předmět nebo jinou drobnou úpravu.                | Něco vlastního přímo ve hře.                        |
+| **2. Vzhled a vlastnosti**  | Upravíme textury či modely a základní vlastnosti pomocí JSON.                                          | Výtvor dostává vlastní identitu a chování.          |
+| **3. Herní mechaniky**      | Přidáme recepty, interakce, efekty a jednoduchá pravidla.                                              | Výtvor je zajímavý i při hraní.                     |
+| **4. První programování**   | Podle potřeby využijeme Bedrock Script API a JavaScript / TypeScript.                                  | Vlastní logika přesahující jednoduchou konfiguraci. |
+| **5. Sdílení a vydání**     | Otestujeme kompatibilitu, připravíme `.mcaddon`, vytvoříme verzi a nabídneme ji kamarádům.             | První veřejně či soukromě sdílený add-on.           |
+| **6. Další rozvoj**         | Nové schopnosti, větší projekty, opravy a další vydání.                                                | Dlouhodobě rostoucí sbírka výtvorů.                 |
 
 Fáze nejsou pevný školní plán. Můžeme se vracet, přeskakovat nebo zůstat u jedné zajímavé věci déle.
 
 ## 5. Nástroje
 
-| Nástroj | K čemu slouží | Kdy ho potřebujeme |
-| --- | --- | --- |
-| **Minecraft Bedrock (Windows)** | Spouštění a testování výtvorů. | Od začátku. |
-| **Visual Studio Code** | Úpravy JSON, skriptů a souborů projektu. | Od začátku. |
-| **Blockbench** | Tvorba modelů a textur; případně průvodci pro Bedrock. | Podle prvního nápadu. |
-| **Git + GitHub** | Historie změn, zálohování zdrojových souborů a vydání. | Od začátku, obsluhu zpočátku řeší rodič. |
-| **Node.js + npm** | Nástroje pro JavaScript / TypeScript a případné build skripty. | Až při skriptování nebo automatizaci. |
-| **Bedrock Script API** | Pokročilejší herní logika a interakce. | V pozdější fázi. |
-| **GitHub Pages** | Jednoduchý projektový web / deník výtvorů. | Až budeme mít co ukazovat. |
-| **GitHub Releases** | Distribuce verzovaných balíčků `.mcaddon`. | Při prvním sdílení. |
-| **AI asistent** | Vysvětlení, hledání chyb, návrhy malých kroků a pomoc s kódem. | Pod vedením rodiče, podle potřeby. |
+| Nástroj                         | K čemu slouží                                                  | Kdy ho potřebujeme                       |
+| ------------------------------- | -------------------------------------------------------------- | ---------------------------------------- |
+| **Minecraft Bedrock (Windows)** | Spouštění a testování výtvorů.                                 | Od začátku.                              |
+| **Visual Studio Code**          | Úpravy JSON, skriptů a souborů projektu.                       | Od začátku.                              |
+| **Blockbench**                  | Tvorba modelů a textur; případně průvodci pro Bedrock.         | Podle prvního nápadu.                    |
+| **Git + GitHub**                | Historie změn, zálohování zdrojových souborů a vydání.         | Od začátku, obsluhu zpočátku řeší rodič. |
+| **Node.js + npm**               | Nástroje pro JavaScript / TypeScript a případné build skripty. | Až při skriptování nebo automatizaci.    |
+| **Bedrock Script API**          | Pokročilejší herní logika a interakce.                         | V pozdější fázi.                         |
+| **GitHub Pages**                | Jednoduchý projektový web / deník výtvorů.                     | Až budeme mít co ukazovat.               |
+| **GitHub Releases**             | Distribuce verzovaných balíčků `.mcaddon`.                     | Při prvním sdílení.                      |
+| **AI asistent**                 | Vysvětlení, hledání chyb, návrhy malých kroků a pomoc s kódem. | Pod vedením rodiče, podle potřeby.       |
 
 **Poznámka:** Zaměřujeme se na Bedrock add-ony, nikoli na Java Edition modifikace. Formáty, API a kompatibilitu ověřujeme vůči používané verzi Minecraftu.
 

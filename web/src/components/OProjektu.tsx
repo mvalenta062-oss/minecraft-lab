@@ -4,7 +4,11 @@ import { Sekce } from "./Sekce";
 const PRAVIDLA = [
   { ikona: "💡", nazev: "Nápady jsou Máťovy", text: "Co vyrobíme, vymýšlí Máťa. Taťka pomáhá najít první krok." },
   { ikona: "🧱", nazev: "Malé kroky", text: "Nejdřív jeden blok. Pak textura. Pak chování. Pak něco většího." },
-  { ikona: "🧩", nazev: "Chyby jsou hádanky", text: "Když něco nefunguje, není to průšvih. Je to hádanka, kterou vyřešíme." },
+  {
+    ikona: "🧩",
+    nazev: "Chyby jsou hádanky",
+    text: "Když něco nefunguje, není to průšvih. Je to hádanka, kterou vyřešíme.",
+  },
   { ikona: "💾", nazev: "Ukládáme si práci", text: "Každý funkční kousek uložíme, abychom se k němu mohli vrátit." },
 ];
 
