@@ -20,8 +20,8 @@ minecraft-lab/
 │   ├── src/components/   <- jednotlivé části stránky
 │   └── public/images/    <- obrázky
 ├── .github/workflows/    <- akce, která web zveřejní na GitHub Pages
-├── projects/             <- naše add-ony, každý ve své složce
-│   └── first-addon/
+├── projects/             <- naše add-ony, každý ve své složce (založí je npm run bedrock:new)
+│   └── <jmeno>/
 │       ├── README.md     <- co to je a jak to funguje
 │       ├── behavior_pack/  <- chování (co věci dělají)
 │       └── resource_pack/  <- vzhled (textury, modely, zvuky)
@@ -113,9 +113,7 @@ Víc je v [tools/README.md](tools/README.md).
 
 ## Výtvory
 
-| Název        | Stav    | Složka                                       |
-| ------------ | ------- | -------------------------------------------- |
-| První add-on | v plánu | [projects/first-addon](projects/first-addon) |
+Zatím žádný. První vznikne, až Máťa vybere nápad: `npm run bedrock:new <jmeno>`.
 
 Každý add-on má svou složku v `projects/`. Uvnitř je vždy:
 

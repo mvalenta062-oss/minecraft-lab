@@ -70,7 +70,6 @@ export const PROJEKTY: Projekt[] = [
     nazev: "První add-on",
     popis: "Ještě nevíme, co to bude. Máťa vybírá nápad.",
     stav: "plan",
-    odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/first-addon",
   },
 ];
 
