@@ -20,8 +20,8 @@ Stačí je spustit a vložit token. Každý jde spustit i víckrát, co už je, 
    powershell -ExecutionPolicy Bypass -File .\instalace-python.ps1
    ```
 
-4. Když se skript zeptá, vlož jméno (třeba `mata`) a token od taťky.
-   Při psaní tokenu se nic nezobrazuje, to je správně. Oba skripty chtějí totéž jméno a token.
+4. Když se skript zeptá, vlož token od taťky. Při psaní se nic nezobrazuje, to je správně.
+   Jméno projektu na gateway je napevno `mv-minecraft`.
    Winget si může říct o potvrzení správce, klikni *Ano*.
 5. Zavři a znovu otevři PowerShell a spusť kontrolu:
 
@@ -29,12 +29,12 @@ Stačí je spustit a vložit token. Každý jde spustit i víckrát, co už je, 
    powershell -ExecutionPolicy Bypass -File .\kontrola.ps1
    ```
 
-Údaje jdou zadat i rovnou jako parametry, `-Uzivatel mata -Token "..."`,
+Token jde zadat i rovnou jako parametr `-Token "..."`,
 ale pak zůstane v historii PowerShellu, takže radši nech skript zeptat se.
 
 ## Kde co je po instalaci
 
-- `%USERPROFILE%\.npmrc` – npm registry = gateway, přihlášení bere z proměnné `SGW_AUTH` (base64 z `jmeno:token`)
+- `%USERPROFILE%\.npmrc` – npm registry = gateway, přihlášení bere z proměnné `SGW_AUTH` (base64 z `mv-minecraft:token`)
 - proměnné prostředí uživatele: `SGW_AUTH`, `UV_INDEX_SHIELDOO_USERNAME`, `UV_INDEX_SHIELDOO_PASSWORD`
   (Nastavení → Systém → Upřesnit → Proměnné prostředí)
 

@@ -5,14 +5,14 @@
   Spuštění (PowerShell, nemusí být jako správce):
     powershell -ExecutionPolicy Bypass -File .\instalace-python.ps1
 
-  Skript se zeptá na uživatelské jméno a token. Uloží je do uživatelských
+  Skript se zeptá na token. Projekt mv-minecraft a token uloží do uživatelských
   proměnných prostředí UV_INDEX_SHIELDOO_USERNAME a UV_INDEX_SHIELDOO_PASSWORD,
   odkud si je bere uv (index "shieldoo" je zapsaný v tools/pyproject.toml).
   Pip napřímo nepoužíváme, takže se nenastavuje.
 #>
 param(
-  # Uživatelské jméno pro gateway. Když ho nezadáš, skript se zeptá.
-  [string]$Uzivatel,
+  # Jméno projektu pro gateway (štítek pro audit), pevně mv-minecraft.
+  [string]$Uzivatel = "mv-minecraft",
   # Token pro gateway. Když ho nezadáš, skript se zeptá (vstup se nezobrazuje).
   [string]$Token
 )
@@ -40,7 +40,7 @@ if (Get-Command uv -ErrorAction SilentlyContinue) {
 uv --version
 
 Krok "2/4 Přihlášení ke gateway"
-if (-not $Uzivatel) { $Uzivatel = Read-Host "Jméno pro gateway (project, stejné jako u Node)" }
+Write-Host "Projekt na gateway: $Uzivatel"
 if (-not $Token) {
   $secure = Read-Host "Vlož token (při psaní se nic nezobrazuje)" -AsSecureString
   $Token  = [System.Net.NetworkCredential]::new("", $secure).Password

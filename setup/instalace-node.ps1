@@ -5,13 +5,13 @@
   Spuštění (PowerShell, nemusí být jako správce, winget si o práva řekne sám):
     powershell -ExecutionPolicy Bypass -File .\instalace-node.ps1
 
-  Skript se zeptá na jméno (project) a token. Podle postupu gateway z nich
+  Skript se zeptá na token. Podle postupu gateway z projektu a tokenu
   udělá base64("jmeno:token") a uloží to do uživatelské proměnné prostředí
   SGW_AUTH, soubor .npmrc se na ni pouze odkazuje.
 #>
 param(
-  # Jméno pro gateway (project), třeba "mata". Když ho nezadáš, skript se zeptá.
-  [string]$Uzivatel,
+  # Jméno projektu pro gateway (štítek pro audit), pevně mv-minecraft.
+  [string]$Uzivatel = "mv-minecraft",
   # Token pro gateway. Když ho nezadáš, skript se zeptá (vstup se nezobrazuje).
   [string]$Token
 )
@@ -48,7 +48,7 @@ Nainstaluj "node" "OpenJS.NodeJS.LTS" "Node.js"
 Write-Host "node $(node --version), npm $(npm --version)"
 
 Krok "3/4 Přihlášení ke gateway"
-if (-not $Uzivatel) { $Uzivatel = Read-Host "Jméno pro gateway (project, třeba mata)" }
+Write-Host "Projekt na gateway: $Uzivatel"
 if (-not $Token) {
   $secure = Read-Host "Vlož token (při psaní se nic nezobrazuje)" -AsSecureString
   $Token  = [System.Net.NetworkCredential]::new("", $secure).Password
