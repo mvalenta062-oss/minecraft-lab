@@ -39,6 +39,19 @@ VS Code sám nabídne doporučená rozšíření (vpravo dole _Install All_), se
 v `.vscode/extensions.json`: podpora Bedrock add-onů, ESLint, Prettier, Python a Pylance.
 Když nabídka zmizí, najdeš je v Rozšířeních (Ctrl+Shift+X) po zadání `@recommended`.
 
+### Konce řádků (jen jednou po prvním stažení na Windows)
+
+Soubory v repu mají konce řádků LF (`.gitattributes` to vynucuje). Pokud bylo repo staženo
+dřív, než tam tohle pravidlo bylo, Git na Windows má soubory s CRLF a po `npm run format`
+hlásí změny v půlce repa. Srovná se to jednou v PowerShellu v kořeni repa:
+
+```powershell
+git pull
+git rm --cached -r . ; git reset --hard
+```
+
+Nebo prostě složku smaž a repo stáhni znovu.
+
 ## Kde co je po instalaci
 
 - `%USERPROFILE%\.npmrc` – npm registry = gateway, přihlášení bere z proměnné `SGW_AUTH` (base64 z `mv-minecraft:token`)

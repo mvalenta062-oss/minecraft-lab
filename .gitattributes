@@ -1,0 +1,14 @@
+# Všechny textové soubory mají v repu i na disku konce řádků LF,
+# ať je Git na Windows nebo na Linuxu. Jinak se Prettier a Git hádají.
+* text=auto eol=lf
+
+# Binární soubory se nepřevádí
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.mcaddon binary
+*.mcpack binary
+*.mcworld binary
