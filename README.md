@@ -23,13 +23,15 @@ minecraft-lab/
 │       ├── README.md     <- co to je a jak to funguje
 │       ├── behavior_pack/  <- chování (co věci dělají)
 │       └── resource_pack/  <- vzhled (textury, modely, zvuky)
-└── tools/                <- pomocné skripty v Pythonu (uv), zatím prázdné
+├── tools/                <- pomocné skripty v Pythonu (uv), zatím prázdné
+└── setup/                <- skripty na nastavení nového počítače (Windows 11)
 ```
 
 ## ⚠️ Pravidlo pro instalaci balíčků
 
 Balíčky (npm i Python) se **vždy** instalují jen přes naši nastavenou gateway.
 Na obou počítačích je přednastavená, takže `npm install` i `uv add` přes ni jdou samy.
+Nový počítač se nastaví skripty ve složce [setup/](setup/README.md).
 
 - **Nikdy** gateway neobcházej: žádný `--registry`, žádný vlastní `.npmrc`,
   žádný `--index-url`, žádné `pip install` mimo uv.
@@ -43,7 +45,7 @@ Na obou počítačích je přednastavená, takže `npm install` i `uv add` přes
 ## Web
 
 Web je napsaný v Reactu a TypeScriptu s komponentami MUI, staví ho Vite.
-Potřebuješ mít nainstalovaný Node.js (verze 22).
+Potřebuješ mít nainstalovaný Node.js (verze 22 nebo novější, nainstaluje ho `setup/instalace-node.ps1`).
 
 **Spuštění na počítači:**
 
