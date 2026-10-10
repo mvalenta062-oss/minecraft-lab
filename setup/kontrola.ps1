@@ -8,7 +8,16 @@ $chyby = 0
 function Ok($text)    { Write-Host "  [OK] $text" -ForegroundColor Green }
 function Chyba($text) { Write-Host "  [!!] $text" -ForegroundColor Red; $script:chyby++ }
 function Je($prikaz)  { [bool](Get-Command $prikaz -ErrorAction SilentlyContinue) }
-function Promenna($n) { [bool][Environment]::GetEnvironmentVariable($n, "User") -or [bool](Get-Item "env:$n" -ErrorAction SilentlyContinue) }
+function Promenna($n) { [bool](Get-Item "env:$n" -ErrorAction SilentlyContinue) }
+
+# Instalace zapsala proměnné do profilu uživatele, ale okno otevřené dřív je nezná.
+# Načteme je do téhle relace, aby kontrola nezávisela na novém okně.
+foreach ($n in "SGW_AUTH", "UV_INDEX_SHIELDOO_USERNAME", "UV_INDEX_SHIELDOO_PASSWORD") {
+  if (-not (Promenna $n)) {
+    $hodnota = [Environment]::GetEnvironmentVariable($n, "User")
+    if ($hodnota) { Set-Item "env:$n" $hodnota }
+  }
+}
 
 Write-Host "`nnpm"
 if (Je "node") { Ok "node $(node --version), npm $(npm --version)" } else { Chyba "node není nainstalovaný" }
