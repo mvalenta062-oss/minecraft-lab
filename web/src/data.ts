@@ -3,15 +3,25 @@
 //
 // Tady je všechno, co se na webu mění nejčastěji.
 // Když chceš přidat nový výtvor nebo zápis do deníku,
-// stačí upravit tenhle soubor. HTML ani CSS sahat nemusíš.
-//
-// Stav může být:  "plan"   = v plánu
-//                 "delame" = právě na tom pracujeme
-//                 "hotovo" = hotovo
+// stačí upravit tenhle soubor.
 // ==========================================================
 
+export type Stav = "plan" | "delame" | "hotovo";
+
+export const NAZVY_STAVU: Record<Stav, string> = {
+  plan: "V plánu",
+  delame: "Děláme",
+  hotovo: "Hotovo",
+};
+
 // ---------- Fáze projektu ----------
-const FAZE = [
+export interface Faze {
+  nazev: string;
+  popis: string;
+  stav: Stav;
+}
+
+export const FAZE: Faze[] = [
   {
     nazev: "Připravit dílnu",
     popis: "Nastavit notebook, Minecraft, editor a tenhle web.",
@@ -45,14 +55,21 @@ const FAZE = [
 ];
 
 // ---------- Výtvory (add-ony) ----------
-// odkazStazeni: odkaz na hotový .mcaddon (klidně nech prázdný "")
-// odkazZdroj:   odkaz na složku s projektem na GitHubu
-const PROJEKTY = [
+export interface Projekt {
+  nazev: string;
+  popis: string;
+  stav: Stav;
+  /** Odkaz na hotový .mcaddon ke stažení (nepovinné) */
+  odkazStazeni?: string;
+  /** Odkaz na složku s projektem na GitHubu (nepovinné) */
+  odkazZdroj?: string;
+}
+
+export const PROJEKTY: Projekt[] = [
   {
     nazev: "První add-on",
     popis: "Ještě nevíme, co to bude. Máťa vybírá nápad.",
     stav: "plan",
-    odkazStazeni: "",
     odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/first-addon",
   },
 ];
@@ -60,7 +77,13 @@ const PROJEKTY = [
 // ---------- Deník ----------
 // Nový zápis přidej NAHORU, aby byl nejnovější první.
 // Datum piš jako "RRRR-MM-DD".
-const DENIK = [
+export interface Zapis {
+  datum: string;
+  nadpis: string;
+  text: string;
+}
+
+export const DENIK: Zapis[] = [
   {
     datum: "2026-10-10",
     nadpis: "Založili jsme dílnu",

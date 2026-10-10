@@ -12,12 +12,12 @@ Je to projekt na učení: nejdřív něco vyrobíme, potom zjistíme, jak to fun
 minecraft-lab/
 ├── README.md             <- tenhle soubor
 ├── PROJECT.md            <- plán a pravidla celého projektu
-├── docs/                 <- web (GitHub Pages)
-│   ├── index.html        <- hlavní stránka
-│   ├── css/style.css     <- jak web vypadá
-│   ├── js/data.js        <- výtvory, deník a plán (tohle se mění nejčastěji)
-│   ├── js/main.js        <- kód, který z dat vyrobí stránku
-│   └── assets/images/    <- obrázky
+├── web/                  <- web (React + TypeScript + MUI)
+│   ├── src/data.ts       <- výtvory, deník a plán (tohle se mění nejčastěji)
+│   ├── src/theme.ts      <- barvy a písma
+│   ├── src/components/   <- jednotlivé části stránky
+│   └── public/images/    <- obrázky
+├── .github/workflows/    <- akce, která web zveřejní na GitHub Pages
 ├── projects/             <- naše add-ony, každý ve své složce
 │   └── first-addon/
 │       ├── README.md     <- co to je a jak to funguje
@@ -28,13 +28,31 @@ minecraft-lab/
 
 ## Web
 
-Web je obyčejné HTML, CSS a JavaScript. Nic se nemusí instalovat.
+Web je napsaný v Reactu a TypeScriptu s komponentami MUI, staví ho Vite.
+Potřebuješ mít nainstalovaný Node.js (verze 22).
 
-- **Lokálně:** otevři `docs/index.html` v prohlížeči.
-- **Na internetu:** GitHub Pages ho zveřejňuje z větve `main` a složky `/docs`.
-  Po každém pushi se web sám obnoví (trvá to asi minutu).
+**Spuštění na počítači:**
 
-Když chceš přidat nový výtvor nebo zápis do deníku, uprav `docs/js/data.js`.
+```bash
+cd web
+npm install     # jen poprvé
+npm run dev     # otevře web na http://localhost:5173/minecraft-lab/
+```
+
+Když chceš přidat nový výtvor nebo zápis do deníku, uprav `web/src/data.ts`.
+Web se v prohlížeči sám obnoví.
+
+**Zveřejnění na internetu:**
+
+Web se zveřejní na GitHub Pages, když pushneš tag začínající na `v`:
+
+```bash
+git tag v1.0
+git push origin v1.0
+```
+
+GitHub pak web sám sestaví a nahraje (trvá to asi minutu, průběh je v záložce *Actions*).
+Druhá možnost je spustit akci *Publikovat web* ručně v záložce Actions.
 
 ## Výtvory
 

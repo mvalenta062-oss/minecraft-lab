@@ -13,5 +13,6 @@ desktop.ini
 *.mcworld
 dist/
 
-# Až budeme používat Node.js
+# Node.js (web a budoucí nástroje)
 node_modules/
+*.tsbuildinfo
