@@ -1,5 +1,5 @@
 <#
-  Rychlá kontrola, že je počítač nastavený: Node.js + npm přes gateway, uv přes gateway.
+  Rychlá kontrola, že je počítač nastavený: Node.js + npm přes gateway, uv přes gateway, Minecraft Bedrock.
   Spuštění:  powershell -ExecutionPolicy Bypass -File .\kontrola.ps1
 #>
 $NpmGateway = "https://npm.shieldoo-gate.cloudfield.cz/"
@@ -43,6 +43,19 @@ if ((Je "uv") -and (Test-Path (Join-Path $tools "pyproject.toml"))) {
   } finally { Pop-Location }
 }
 
+Write-Host "`nMinecraft Bedrock"
+$mcKandidati = @(
+  (Join-Path $env:APPDATA "Minecraft Bedrock\Users\Shared\games\com.mojang"),
+  (Join-Path $env:LOCALAPPDATA "Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang")
+)
+$comMojang = $mcKandidati | Where-Object { Test-Path $_ -PathType Container } | Select-Object -First 1
+if ($comMojang) {
+  Ok "datová složka: $comMojang"
+  foreach ($n in "development_behavior_packs", "development_resource_packs") {
+    if (Test-Path (Join-Path $comMojang $n) -PathType Container) { Ok "složka $n" } else { Chyba "chybí složka $n" }
+  }
+} else { Chyba "datová složka Minecraftu nenalezena (Minecraft není nainstalovaný nebo ještě nebyl spuštěn)" }
+
 Write-Host ""
 if ($chyby -eq 0) { Write-Host "Vše je nastavené." -ForegroundColor Green }
-else { Write-Host "Problémů: $chyby. Spusť znovu instalace-node.ps1 nebo instalace-python.ps1." -ForegroundColor Yellow }
+else { Write-Host "Problémů: $chyby. Spusť znovu instalace-node.ps1, instalace-python.ps1 nebo instalace-minecraft.ps1." -ForegroundColor Yellow }
