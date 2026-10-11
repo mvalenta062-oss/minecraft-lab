@@ -44,7 +44,19 @@ export function Denik() {
             <Typography variant="h4" sx={{ mt: 0.5, mb: 0.5 }}>
               {z.nadpis}
             </Typography>
-            <Typography>{z.text}</Typography>
+            {z.text.split(/\n\s*\n/).map((odstavec, index) => (
+              <Typography key={index} sx={{ mb: 1.5 }}>
+                {odstavec.split(/(\*\*.*?\*\*|`.*?`)/g).map((cast, castIndex) => {
+                  if (cast.startsWith("**") && cast.endsWith("**")) {
+                    return <strong key={castIndex}>{cast.slice(2, -2)}</strong>;
+                  }
+                  if (cast.startsWith("`") && cast.endsWith("`")) {
+                    return <code key={castIndex}>{cast.slice(1, -1)}</code>;
+                  }
+                  return cast;
+                })}
+              </Typography>
+            ))}
           </Box>
         ))}
       </Box>
