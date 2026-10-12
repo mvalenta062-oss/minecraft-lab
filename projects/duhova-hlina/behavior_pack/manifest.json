@@ -1,0 +1,23 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Duhová hlína",
+    "description": "Duhový stavební blok s proužky a barevnými skvrnkami",
+    "uuid": "03e6f285-1b9e-4970-bdf7-191a84389e5d",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "a2bcdee5-7bde-42bc-9ccf-64eaa3831728",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "918bd4fd-c90a-449c-b8c5-d90ce092e5fc",
+      "version": [1, 0, 0]
+    }
+  ]
+}

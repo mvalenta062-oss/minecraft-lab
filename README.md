@@ -132,7 +132,9 @@ Víc je v [tools/README.md](tools/README.md).
 
 ## Výtvory
 
-Zatím žádný. První vznikne, až Máťa vybere nápad: `npm run bedrock:new <jmeno>`.
+První výtvor je [Duhová hlína](projects/duhova-hlina/README.md): kostička s duhovými
+proužky a barevnými skvrnkami do kreativního inventáře. Funkčnost v Minecraftu
+na Windows potvrdil uživatel; iPad zatím není ověřen.
 
 Každý add-on má svou složku v `projects/`. Uvnitř je vždy:
 

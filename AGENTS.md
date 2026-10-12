@@ -48,6 +48,18 @@ pro Codex, Claude Code a další asistenty pracující s projektovými soubory.
 
 - Vyvíjíme Bedrock add-ony. Formáty a API ověřuj vůči cílovým verzím projektu;
   nepoužívej návody pro Java Edition jako náhradu.
+- U vlastních bloků ověř i změny formátu komponent pro jejich `format_version`.
+  Duhová hlína se nenačetla kvůli starému zápisu
+  `"tag:minecraft:is_shovel_item_destructible": {}`. Pro moderní formát použij
+  `"minecraft:tags": ["minecraft:is_shovel_item_destructible"]`; požadavek ověř
+  v [poznámkách ke změně formátu](https://learn.microsoft.com/en-us/minecraft/creator/documents/update1.26.20?view=minecraft-bedrock-stable).
+  Úspěšné `bedrock:validate`, build ani deploy nezaručují, že hra přijme všechny
+  komponenty: kontrola nástrojů není úplná validace herního schématu.
+- Pokud je balíček aktivní, ale blok chybí v inventáři, zkontroluj definici bloku
+  a případné chyby v herním Content Log (záznam chyb obsahu). Nezapínej experimenty
+  ani vývojářský režim bez konkrétního požadavku použité funkce. Po opravě znovu
+  nasaď doplněk a načti svět; podle potřeby restartuj hru. Deploy aktualizuje
+  původní balíček, nepřidává další položku do seznamu.
 - Před předáním změny spusť odpovídající kontrolu. Pro doplněk používej
   `npm run bedrock:validate -- <nazev>` a podle změny také
   `npm run bedrock:build -- <nazev>`. Pro změny nástrojů použij

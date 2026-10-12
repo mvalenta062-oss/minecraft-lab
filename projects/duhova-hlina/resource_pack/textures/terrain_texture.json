@@ -1,0 +1,9 @@
+{
+  "resource_pack_name": "duhova-hlina",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "factory_duhova_hlina": { "textures": "textures/blocks/duhova_hlina" }
+  }
+}

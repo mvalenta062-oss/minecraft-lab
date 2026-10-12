@@ -1,0 +1,21 @@
+{
+  "format_version": "1.26.40",
+  "minecraft:block": {
+    "description": {
+      "identifier": "factory:duhova_hlina",
+      "menu_category": { "category": "nature" }
+    },
+    "components": {
+      "minecraft:display_name": "tile.factory:duhova_hlina.name",
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": { "texture": "factory_duhova_hlina", "render_method": "opaque" }
+      },
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.5 },
+      "minecraft:destructible_by_explosion": { "explosion_resistance": 0.5 },
+      "minecraft:friction": 0.4,
+      "minecraft:loot": "loot_tables/blocks/duhova_hlina.json",
+      "minecraft:tags": ["minecraft:is_shovel_item_destructible"]
+    }
+  }
+}
