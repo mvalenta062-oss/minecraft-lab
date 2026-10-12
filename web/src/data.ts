@@ -65,20 +65,24 @@ export interface Projekt {
   odkazZdroj?: string;
   /** Náhled textury nebo obrázek doplňku. */
   nahled?: string;
-  /** Krátký postup zapnutí a nalezení ve hře. */
-  navod?: string;
+  /** Zelená = ověřeno ve hře, šedá = zatím neověřeno. */
+  platformy?: { platforma: "windows" | "ipad"; overeno: boolean }[];
+  /** Jak výtvor získat běžným hraním. */
+  rezimy?: ("creative" | "survival")[];
 }
 
 export const PROJEKTY: Projekt[] = [
   {
     nazev: "Duhová hlína",
-    popis:
-      "První vlastní kostička: duhové proužky a barevné skvrnky ze všech stran. Na stavění v kreativním režimu. Funguje na Windows; iPad zatím neověřen.",
+    popis: "Duhové proužky a barevné skvrnky ze všech stran. Na stavění v kreativním režimu.",
     stav: "hotovo",
     odkazStazeni: `${import.meta.env.BASE_URL}addony/duhova-hlina.mcaddon`,
+    rezimy: ["creative"],
     nahled: `${import.meta.env.BASE_URL}images/duhova-hlina.png`,
-    navod:
-      "Otevřete balíček v Minecraft Bedrock a zapněte ve světě oba packy. V kreativním inventáři hledejte Duhová hlína / Rainbow Dirt. Bez experimentů.",
+    platformy: [
+      { platforma: "windows", overeno: true },
+      { platforma: "ipad", overeno: false },
+    ],
     odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/duhova-hlina",
   },
 ];
