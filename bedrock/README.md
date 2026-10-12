@@ -54,6 +54,9 @@ Typy pro skripty jsou v `projects/tsconfig.json` a `projects/bedrock.d.ts`.
 - `web/public/addony/<jmeno>.mcaddon` + `web/public/addony/katalog.json` – balíčky pro sdílení.
   Vite tuhle složku při buildu webu vezme s sebou, takže na GitHub Pages bude
   `.../minecraft-lab/addony/katalog.json`. V katalogu je `url` relativní ke katalogu.
+  Před vydáním spusť `npm run bedrock:package -- <jmeno>` a zahrň vygenerovaný
+  balíček i katalog do commitu webu. Pages tak zveřejní přesně připravené soubory
+  bez instalace dalších nástrojů pro add-ony na serveru.
 
 Kde je `com.mojang`, se bere z `bedrock.local.json` v kořeni repa (píše ho `setup/instalace-minecraft.ps1`),
 jinak se zkusí známá místa na Windows. Cestu jde dát i ručně:

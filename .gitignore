@@ -14,7 +14,8 @@ desktop.ini
 *.mcpack
 *.mcworld
 dist/
-web/public/addony/
+# Balíčky pro vydání webu připravuje bedrock:package a verzujeme je spolu s webem.
+!web/public/addony/*.mcaddon
 
 # Lokální nastavení (cesta k Minecraftu na tomhle počítači, píše setup/instalace-minecraft.ps1)
 bedrock.local.json

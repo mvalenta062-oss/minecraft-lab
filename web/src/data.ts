@@ -29,13 +29,13 @@ export const FAZE: Faze[] = [
   },
   {
     nazev: "První vlastní výtvor",
-    popis: "Máťa vybere nápad. Vyrobíme první blok nebo předmět.",
-    stav: "plan",
+    popis: "Duhová hlína je hotová a funguje v Minecraftu na Windows!",
+    stav: "hotovo",
   },
   {
     nazev: "Vzhled a vlastnosti",
-    popis: "Vlastní textury, modely a nastavení v JSON.",
-    stav: "plan",
+    popis: "První vlastní textura: duhové proužky a barevné skvrnky na všech stranách kostky.",
+    stav: "hotovo",
   },
   {
     nazev: "Herní mechaniky",
@@ -49,8 +49,8 @@ export const FAZE: Faze[] = [
   },
   {
     nazev: "Sdílení a vydání",
-    popis: "Zabalíme add-on do .mcaddon a dáme ho vyzkoušet kamarádům.",
-    stav: "plan",
+    popis: "Duhovou hlínu nabízíme ke stažení. Další krok: vyzkoušet balíček na iPadu kamarádů.",
+    stav: "delame",
   },
 ];
 
@@ -63,13 +63,23 @@ export interface Projekt {
   odkazStazeni?: string;
   /** Odkaz na složku s projektem na GitHubu (nepovinné) */
   odkazZdroj?: string;
+  /** Náhled textury nebo obrázek doplňku. */
+  nahled?: string;
+  /** Krátký postup zapnutí a nalezení ve hře. */
+  navod?: string;
 }
 
 export const PROJEKTY: Projekt[] = [
   {
-    nazev: "První add-on",
-    popis: "Ještě nevíme, co to bude. Máťa vybírá nápad.",
-    stav: "plan",
+    nazev: "Duhová hlína",
+    popis:
+      "První vlastní kostička: duhové proužky a barevné skvrnky ze všech stran. Na stavění v kreativním režimu. Funguje na Windows; iPad zatím neověřen.",
+    stav: "hotovo",
+    odkazStazeni: `${import.meta.env.BASE_URL}addony/duhova-hlina.mcaddon`,
+    nahled: `${import.meta.env.BASE_URL}images/duhova-hlina.png`,
+    navod:
+      "Otevřete balíček v Minecraft Bedrock a zapněte ve světě oba packy. V kreativním inventáři hledejte Duhová hlína / Rainbow Dirt. Bez experimentů.",
+    odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/duhova-hlina",
   },
 ];
 
@@ -83,6 +93,13 @@ export interface Zapis {
 }
 
 export const DENIK: Zapis[] = [
+  {
+    datum: "2026-10-12",
+    nadpis: "První kostička je na světě. A je duhová!",
+    text: `Máťa vymyslel **duhovou hlínu**: kostičku s proužky a barevnými skvrnkami na stavění v kreativním režimu. Byl nadšený a všechno šlo skoro jako po drátkách. Až na drobnou chybu: balíček byl zapnutý, ale kostička v inventáři nikde. Svět vývoje není vždycky růžový — ani když vyrábíme duhu. :-D
+
+Opravili jsme zastaralý zápis jedné vlastnosti a po novém nasazení už vše fungovalo. Poučení jsme zapsali pro příště. **První doplněk je hotový a ke stažení!** Na Windows ověřeno, iPad nás ještě čeká.`,
+  },
   {
     datum: "2026-10-11",
     nadpis: "Dílna stojí. A teď konečně Minecraft!",

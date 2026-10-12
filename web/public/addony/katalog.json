@@ -1,0 +1,19 @@
+{
+  "format": 1,
+  "poznamka": "Generuje npm run bedrock:package, ručně neupravovat. url je relativní ke složce s tímhle souborem.",
+  "addony": [
+    {
+      "id": "duhova-hlina",
+      "nazev": "Duhová hlína",
+      "popis": "Duhový stavební blok s proužky a barevnými skvrnkami",
+      "verze": "1.0.0",
+      "minecraft": "1.26.40",
+      "packy": [
+        "behavior_pack",
+        "resource_pack"
+      ],
+      "url": "duhova-hlina.mcaddon",
+      "velikost": 5578
+    }
+  ]
+}

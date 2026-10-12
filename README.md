@@ -64,6 +64,10 @@ Web se v prohlížeči sám obnoví.
 
 **Zveřejnění na internetu:**
 
+Před vydáním doplňku spusť `npm run bedrock:package -- <jmeno>` z kořene repozitáře.
+Připraví `.mcaddon` a katalog v `web/public/addony/`. Tyto soubory zahrň do commitu
+spolu s aktualizací `web/src/data.ts`, aby byly na Pages dostupné ke stažení.
+
 Web se zveřejní na GitHub Pages, když pushneš tag začínající na `v`:
 
 ```bash
