@@ -173,8 +173,12 @@ export function Vytvory() {
                   </Tooltip>
                 ))}
                 {p.odkazZdroj && (
-                  <Link href={p.odkazZdroj} sx={{ ml: "auto", fontSize: "0.9rem", whiteSpace: "nowrap" }}>
-                    Zdrojové soubory
+                  <Link
+                    href={p.odkazZdroj}
+                    aria-label={`Repozitář: ${p.nazev}`}
+                    sx={{ ml: "auto", fontSize: "0.9rem", whiteSpace: "nowrap" }}
+                  >
+                    Repo
                   </Link>
                 )}
               </Stack>

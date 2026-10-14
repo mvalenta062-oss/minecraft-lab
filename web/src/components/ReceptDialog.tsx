@@ -24,7 +24,7 @@ export function ReceptDialog({ projekt, zavrit }: { projekt: Projekt | null; zav
   };
   return (
     <Dialog open={Boolean(recept)} onClose={zavrit} maxWidth="sm" fullWidth aria-labelledby="recept-nadpis">
-      <DialogTitle id="recept-nadpis">{projekt?.nazev}: jak ho vyrobit</DialogTitle>
+      <DialogTitle id="recept-nadpis">Recept: {projekt?.nazev}</DialogTitle>
       <DialogContent>
         <Typography variant="h3" sx={{ mb: 2 }}>
           Pracovní stůl
