@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "factory:drevena_kosile",
+      "materials": {
+        "default": "armor",
+        "dyed": "entity_alphatest_change_color"
+      },
+      "textures": {
+        "default": "textures/models/armor/drevena_kosile",
+        "dyed": "textures/models/armor/drevena_kosile_dyed"
+      },
+      "geometry": {
+        "default": "geometry.humanoid.armor.chestplate"
+      },
+      "scripts": {
+        "parent_setup": "variable.chest_layer_visible = 0.0;",
+        "pre_animation": [
+          "variable.is_dyed = query.armor_color_slot(1, 0) != 1.0 || query.armor_color_slot(1, 1) != 1.0 || query.armor_color_slot(1, 2) != 1.0;"
+        ]
+      },
+      "render_controllers": ["controller.render.factory.drevena_kosile"]
+    }
+  }
+}

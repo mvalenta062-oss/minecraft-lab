@@ -1,0 +1,8 @@
+{
+  "resource_pack_name": "drevene_brneni",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "drevena_kosile": { "textures": "textures/items/drevena_kosile" },
+    "drevena_kosile_dyed": { "textures": "textures/items/drevena_kosile_dyed" }
+  }
+}

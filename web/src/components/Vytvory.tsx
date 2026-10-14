@@ -1,10 +1,14 @@
 import { Box, Button, Chip, Grid, Link, Paper, Stack, SvgIcon, Tooltip, Typography } from "@mui/material";
 import { PROJEKTY } from "../data";
+import type { Projekt } from "../data";
+import { useState } from "react";
+import { ReceptDialog } from "./ReceptDialog";
 import { Sekce } from "./Sekce";
 import { StavChip } from "./StavChip";
 import { barvy } from "../theme";
 
 export function Vytvory() {
+  const [receptProjekt, nastavReceptProjekt] = useState<Projekt | null>(null);
   return (
     <Sekce id="vytvory" nadpis="Výtvory">
       <Box
@@ -57,11 +61,11 @@ export function Vytvory() {
           <li>
             <strong>Vyber si způsob hraní.</strong> V kreativním režimu otevři inventář a u lupy napiš název výtvoru.
             Doplněk označený Přežití můžeš získat i běžným hraním — pokud má recept, nasbírej suroviny a vyrob ho podle
-            něj. Recept najdeš v popisu doplňku.
+            něj. U doplňku otevři tlačítko Recept se symbolem pracovního stolu.
           </li>
           <li>
-            <strong>A jdeme stavět!</strong> Přesuň kostičku do spodní lišty a vyber ji. Na počítači ji položíš pravým
-            tlačítkem myši.
+            <strong>A jdeme hrát!</strong> Kostičku přesuň do spodní lišty a polož ji do světa. Brnění si obleč do
+            odpovídajícího políčka v inventáři.
           </li>
         </Box>
       </Box>
@@ -75,7 +79,7 @@ export function Vytvory() {
                   <Box
                     component="img"
                     src={p.nahled}
-                    alt={`Náhled textury: ${p.nazev}`}
+                    alt={`Náhled: ${p.nazev}`}
                     sx={{ width: 72, height: 72, flexShrink: 0, imageRendering: "pixelated", borderRadius: 1 }}
                   />
                 )}
@@ -83,7 +87,40 @@ export function Vytvory() {
                   <Typography variant="h4" sx={{ color: barvy.lampa, mb: 1 }}>
                     {p.nazev}
                   </Typography>
-                  <StavChip stav={p.stav} />
+                  <Stack direction="row" spacing={1} alignItems="center" useFlexGap flexWrap="wrap">
+                    <StavChip stav={p.stav} />
+                    {p.recept && (
+                      <Tooltip title="Jak vyrobit: recept na pracovním stole">
+                        <Button
+                          size="small"
+                          variant="text"
+                          onClick={() => nastavReceptProjekt(p)}
+                          aria-haspopup="dialog"
+                          aria-label={`Recept: ${p.nazev}`}
+                          startIcon={
+                            <SvgIcon viewBox="0 0 16 16" sx={{ fontSize: 20 }} aria-hidden="true">
+                              <path fill="#68442b" d="M1 5h14v10H1z" />
+                              <path fill="#bc8751" d="M1 1h14v5H1z" />
+                              <path fill="#593b26" d="M5 1h1v5H5zm5 0h1v5h-1zM1 3h14v1H1zM3 7h2v8H3zm8 0h2v8h-2z" />
+                              <path fill="#d5ad72" d="M6 7h4v5H6z" />
+                            </SvgIcon>
+                          }
+                          sx={{
+                            p: "2px 6px",
+                            minWidth: 0,
+                            minHeight: 32,
+                            fontSize: "0.85rem",
+                            color: "text.secondary",
+                            border: 0,
+                            boxShadow: "none",
+                            "&:active": { transform: "none", boxShadow: "none" },
+                          }}
+                        >
+                          Recept
+                        </Button>
+                      </Tooltip>
+                    )}
+                  </Stack>
                 </Box>
               </Stack>
               <Typography color="text.secondary" sx={{ flex: 1 }}>
@@ -160,6 +197,7 @@ export function Vytvory() {
           </Grid>
         ))}
       </Grid>
+      <ReceptDialog projekt={receptProjekt} zavrit={() => nastavReceptProjekt(null)} />
     </Sekce>
   );
 }

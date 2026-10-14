@@ -3,6 +3,19 @@
   "poznamka": "Generuje npm run bedrock:package, ručně neupravovat. url je relativní ke složce s tímhle souborem.",
   "addony": [
     {
+      "id": "drevene-brneni",
+      "nazev": "Dřevěné brnění",
+      "popis": "Dřevěná košile s peřím (chování)",
+      "verze": "1.0.0",
+      "minecraft": "1.26.40",
+      "packy": [
+        "behavior_pack",
+        "resource_pack"
+      ],
+      "url": "drevene-brneni.mcaddon",
+      "velikost": 26199
+    },
+    {
       "id": "duhova-hlina",
       "nazev": "Duhová hlína",
       "popis": "Duhový stavební blok s proužky a barevnými skvrnkami",

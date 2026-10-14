@@ -49,8 +49,8 @@ export const FAZE: Faze[] = [
   },
   {
     nazev: "Sdílení a vydání",
-    popis: "Duhovou hlínu nabízíme ke stažení. Další krok: vyzkoušet balíček na iPadu kamarádů.",
-    stav: "delame",
+    popis: "Doplňky umíme zabalit a nabídnout ke stažení. Duhová hlína funguje i na iPadu!",
+    stav: "hotovo",
   },
 ];
 
@@ -69,6 +69,12 @@ export interface Projekt {
   platformy?: { platforma: "windows" | "ipad"; overeno: boolean }[];
   /** Jak výtvor získat běžným hraním. */
   rezimy?: ("creative" | "survival")[];
+  /** Podrobný recept otevřený z karty; mezera znamená prázdné políčko. */
+  recept?: {
+    radky: string[];
+    suroviny: Record<string, { nazev: string; obrazek: string }>;
+    popis: string;
+  };
 }
 
 export const PROJEKTY: Projekt[] = [
@@ -81,9 +87,32 @@ export const PROJEKTY: Projekt[] = [
     nahled: `${import.meta.env.BASE_URL}images/duhova-hlina.png`,
     platformy: [
       { platforma: "windows", overeno: true },
-      { platforma: "ipad", overeno: false },
+      { platforma: "ipad", overeno: true },
     ],
     odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/duhova-hlina",
+  },
+  {
+    nazev: "Dřevěné brnění",
+    popis:
+      "Sedm polen, jedno pírko a odvaha vyrazit za dobrodružstvím. Dřevo drží stráž a peří odpruží údery: košile ochrání před útoky zblízka a odrazí útočníky. Jen na Wardena je krátká!",
+    stav: "hotovo",
+    odkazStazeni: `${import.meta.env.BASE_URL}addony/drevene-brneni.mcaddon`,
+    odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/drevene-brneni",
+    nahled: `${import.meta.env.BASE_URL}images/drevene-brneni.png`,
+    rezimy: ["creative", "survival"],
+    platformy: [
+      { platforma: "windows", overeno: true },
+      { platforma: "ipad", overeno: false },
+    ],
+    recept: {
+      radky: ["DDD", "DSD", "D D"],
+      suroviny: {
+        D: { nazev: "Libovolné poleno", obrazek: `${import.meta.env.BASE_URL}images/poleno.svg` },
+        S: { nazev: "Slepičí pírko", obrazek: `${import.meta.env.BASE_URL}images/pirko.svg` },
+      },
+      popis:
+        "Na pracovním stole použij 7 libovolných polen a 1 slepičí pírko. Druhy polen můžeš míchat. Spodní prostřední políčko nech prázdné. Výsledkem je jedna dřevěná košile s peřím; obleč ji místo hrudního brnění.",
+    },
   },
 ];
 
@@ -97,6 +126,15 @@ export interface Zapis {
 }
 
 export const DENIK: Zapis[] = [
+  {
+    datum: "2026-10-14",
+    nadpis: "Dřevo, peří a velká radost",
+    text: `Máťa vymyslel **Dřevěné brnění**, které si můžeme vyrobit hned na začátku hry. Stačí sedm polen a jedno slepičí pírko: dřevo chrání a peří odpružuje údery. Útočník si bouchne a odskočí. Jen Warden zůstává pořádný soupeř.
+
+Recept i chování jsme vyzkoušeli přímo ve hře a **funguje to!** Máťa měl obrovskou radost — nejen z vlastního výtvoru, ale i z toho, že košile pomůže kamarádům přežít začátky jejich dobrodružství.
+
+A ještě jedna dobrá zpráva: **Duhová hlína je otestovaná i na iPadu.** Sdílení a vydávání doplňků tak můžeme v plánu odškrtnout.`,
+  },
   {
     datum: "2026-10-12",
     nadpis: "První kostička je na světě. A je duhová!",

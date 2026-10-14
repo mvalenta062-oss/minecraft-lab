@@ -1,6 +1,6 @@
 # Duhová hlína
 
-**Stav:** podle potvrzení uživatele funguje v Minecraftu na Windows.
+**Stav:** podle potvrzení uživatele funguje v Minecraftu na Windows i na iPadu.
 
 Stavební kostička s duhovými proužky a barevnými skvrnkami jako hlína.
 Stejná textura 16 × 16 pixelů je na všech šesti stranách. Je v kreativním inventáři
@@ -37,12 +37,12 @@ Alternativa: `npm run bedrock:package -- duhova-hlina` vytvoří
 - Kontrola `bedrock:validate`, sestavení `bedrock:build`, balení `bedrock:package`
   a kontrola kódu `lint` prošly. Kontrola doplňku je bez varování.
 - Cílová verze je v `bedrock/nastaveni.json`; skutečná verze hry nebyla ověřena.
-- Minecraft na Windows: funkčnost potvrzena uživatelem. iPad zatím neověřen.
+- Minecraft na Windows i na iPadu: funkčnost potvrzena uživatelem (iPad potvrzen 14. 10. 2026).
 - První verze napodobuje hlínu jako pevný stavební blok se zvukem hlíny a základní
   odolností. Při těžbě mimo kreativní režim má vracet sama sebe.
 - Nepřebírá automaticky zarůstání trávou, obdělávání motykou, změnu na pěšinu
   ani sázení rostlin. Tyto vlastnosti nejsou součástí první verze.
-- Další krok: podle zájmu vyzkoušet balíček na iPadu.
+- Další krok: další úpravy podle přání autora.
 
 `nahled.png` je zvětšený náhled textury, nikoli snímek ze hry. Texturu a náhled lze
 znovu vytvořit pomocí `node projects/duhova-hlina/vytvor-texturu.mjs` bez nových závislostí.

@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Dřevěné brnění",
+    "description": "Dřevěná košile s peřím (vzhled)",
+    "uuid": "555605a4-1aad-4694-a73c-1fd518af72a8",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "b9c9f018-a41d-4587-8ea3-b95c35202005",
+      "version": [1, 0, 0]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "format_version": "1.26.40",
+  "minecraft:item": {
+    "description": {
+      "identifier": "factory:drevena_kosile",
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.chestplate"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "item.factory:drevena_kosile.name"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "drevena_kosile",
+          "dyed": "drevena_kosile_dyed"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:wearable": {
+        "slot": "slot.armor.chest",
+        "protection": 0
+      },
+      "minecraft:dyeable": {}
+    }
+  }
+}
