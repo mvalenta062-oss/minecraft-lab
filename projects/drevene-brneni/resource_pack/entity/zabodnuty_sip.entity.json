@@ -1,0 +1,24 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "factory:zabodnuty_sip",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/arrows"
+      },
+      "geometry": {
+        "default": "geometry.factory.zabodnuty_sip"
+      },
+      "animations": {
+        "smer": "animation.factory.sip_smer"
+      },
+      "scripts": {
+        "animate": ["smer"]
+      },
+      "render_controllers": ["controller.render.factory.zabodnuty_sip"]
+    }
+  }
+}

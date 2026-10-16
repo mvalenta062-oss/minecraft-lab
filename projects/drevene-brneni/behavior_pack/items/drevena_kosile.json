@@ -23,7 +23,11 @@
         "slot": "slot.armor.chest",
         "protection": 0
       },
-      "minecraft:dyeable": {}
+      "minecraft:dyeable": {},
+      "minecraft:enchantable": {
+        "value": 15,
+        "slot": "armor_torso"
+      }
     }
   }
 }

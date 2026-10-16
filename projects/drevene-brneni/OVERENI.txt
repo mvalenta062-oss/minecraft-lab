@@ -1,0 +1,15 @@
+Dřevěné brnění 1.2.0 — ověření 16. 10. 2026
+
+Úspěšně prošlo:
+- projektová validace manifestů a JSON
+- sestavení obou balíčků včetně kontroly TypeScriptu
+- 18 automatických testů s napodobeným Script API (12 ochrana, 6 dekorace šípů)
+- ESLint celého repozitáře
+
+Zdroje aktualizace byly importovány do stávajícího projektu; UUID balíčků i modulů zůstala zachována. Výše uvedené kontroly byly po importu úspěšně zopakovány.
+
+Uživatel 16. 10. 2026 potvrdil vyzkoušení aktualizace v Minecraftu na Windows a spokojenost s výsledkem. Rozsah jednotlivých zkoušek nebyl upřesněn.
+
+Na iPadu zatím neověřeno. V tomto kroku nebyl nově vytvořen .mcaddon; v původní izolované kopii podle předávacího záznamu jeho vytvoření prošlo.
+Samostatně nepotvrzené okrajové případy: šípy při pohybu, jed po zrušeném zásahu, jednotlivé složky ghastova útoku a Fire Protection na nezničitelném předmětu bez běžných bodů ochrany.
+Další krok: podle potřeby dokončit jednotlivé zkoušky podle README.md a ověřit kompatibilitu na iPadu.

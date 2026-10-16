@@ -6,7 +6,7 @@ import { URL } from "node:url";
 import { transformSync } from "esbuild";
 
 const zdroj = readFileSync(new URL("../behavior_pack/scripts/main.ts", import.meta.url), "utf8");
-const kod = transformSync(zdroj.replace(/^import .*?;\s*/s, ""), { loader: "ts" }).code;
+const kod = transformSync(zdroj.replace(/^import .*?;\s*/gm, ""), { loader: "ts" }).code;
 
 function pokus({
   utocnik = "minecraft:zombie",
@@ -37,8 +37,15 @@ function pokus({
     },
   };
   vm.runInNewContext(kod, {
+    zaznamenejSip: () => {},
     EntityComponentTypes: { Equippable: "equippable" },
-    EntityDamageCause: { entityAttack: "entityAttack" },
+    EntityDamageCause: {
+      entityAttack: "entityAttack",
+      projectile: "projectile",
+      entityExplosion: "entityExplosion",
+      blockExplosion: "blockExplosion",
+      fireworks: "fireworks",
+    },
     EquipmentSlot: { Chest: "Chest" },
     system: { run: (fn) => cekajici.push(fn) },
     world: {
@@ -58,7 +65,9 @@ function pokus({
     damageSource: {
       cause: pricina,
       damagingEntity: utocnik ? nepritel : undefined,
-      damagingProjectile: projektil ? {} : undefined,
+      damagingProjectile: projektil
+        ? { typeId: typeof projektil === "string" ? projektil : "minecraft:arrow" }
+        : undefined,
     },
   };
   callback(event);
@@ -85,11 +94,40 @@ test("Warden může udeřit a neodrazí se", () => {
   assert.equal(p.event.cancel, false);
   assert.equal(p.dokonci(), 0);
 });
-test("Střely, výbuch, pád a oheň zůstávají nechráněné", () => {
-  for (const pricina of ["projectile", "entityExplosion", "fall", "fire", "magic", "contact"]) {
+test("Jiné příčiny zůstávají nechráněné", () => {
+  for (const pricina of ["projectile", "fall", "fire", "fireTick", "lava", "magic", "wither", "contact"]) {
     assert.equal(pokus({ pricina }).event.cancel, false);
   }
   assert.equal(pokus({ projektil: true }).event.cancel, false);
+});
+test("Šíp kostlivce, hráče i dávkovače zastaví bez odražení střelce", () => {
+  for (const utocnik of ["minecraft:skeleton", "minecraft:player", ""]) {
+    const p = pokus({ utocnik, pricina: "projectile", projektil: true });
+    assert.equal(p.event.cancel, true);
+    assert.equal(p.dokonci(), 0);
+  }
+});
+test("Creeper způsobí polovinu původního zásahu, bez náhradního zranění", () => {
+  const p = pokus({ utocnik: "minecraft:creeper", pricina: "entityExplosion" });
+  assert.equal(p.event.cancel, false);
+  assert.equal(p.event.damage, 500);
+  assert.equal(p.dokonci(), 0);
+});
+test("Výbuchy TNT i ghasta mají stejnou ochranu, jiné střely nikoli", () => {
+  for (const utocnik of ["minecraft:tnt", "minecraft:ghast", ""]) {
+    const p = pokus({ utocnik, pricina: "entityExplosion" });
+    assert.equal(p.event.damage, 500);
+    assert.equal(p.event.cancel, false);
+  }
+  assert.equal(pokus({ pricina: "projectile", projektil: "minecraft:snowball" }).event.cancel, false);
+});
+test("Nové ochrany vyžadují kyrys a platí pouze pro hráče", () => {
+  for (const volby of [{ kosile: "" }, { kosile: "minecraft:leather_chestplate" }, { cil: "minecraft:zombie" }]) {
+    const sip = pokus({ ...volby, pricina: "projectile", projektil: true });
+    assert.equal(sip.event.cancel, false);
+    const vybuch = pokus({ ...volby, utocnik: "minecraft:creeper", pricina: "entityExplosion" });
+    assert.equal(vybuch.event.damage, 1000);
+  }
 });
 test("Bez oblečené košile ochrana neplatí; neplatí ani pro moby", () => {
   for (const kosile of ["", "minecraft:leather_chestplate"]) assert.equal(pokus({ kosile }).event.cancel, false);
@@ -108,4 +146,19 @@ test("Neodhoditelná entita nezruší ochranu", () => {
   };
   assert.doesNotThrow(p.dokonci);
   assert.equal(p.event.cancel, true);
+});
+
+test("Blokové exploze a ohňostroje způsobí polovinu zranění", () => {
+  for (const pricina of ["blockExplosion", "fireworks"]) {
+    const p = pokus({ pricina, utocnik: "" });
+    assert.equal(p.event.damage, 500);
+    assert.equal(p.event.cancel, false);
+  }
+});
+test("Trojzubec a přímý zásah ghastovou koulí jsou zastavené", () => {
+  for (const projektil of ["minecraft:thrown_trident", "minecraft:fireball"]) {
+    const p = pokus({ pricina: "projectile", projektil });
+    assert.equal(p.event.cancel, true);
+    assert.equal(p.dokonci(), 0);
+  }
 });

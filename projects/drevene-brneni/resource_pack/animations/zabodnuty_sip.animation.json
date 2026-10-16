@@ -1,0 +1,14 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.factory.sip_smer": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "rotation": ["-query.target_x_rotation", "-query.target_y_rotation", 0],
+          "scale": [0.5, 0.5, 0.55]
+        }
+      }
+    }
+  }
+}

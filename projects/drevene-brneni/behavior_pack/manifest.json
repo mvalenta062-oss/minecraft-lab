@@ -2,29 +2,29 @@
   "format_version": 2,
   "header": {
     "name": "Dřevěné brnění",
-    "description": "Dřevěná košile s peřím (chování)",
+    "description": "Dřevěný kyrys: údery, střely, výbuchy a očarování",
     "uuid": "3c142226-b92f-43ba-b70d-fc6d43564f72",
-    "version": [1, 0, 0],
+    "version": [1, 2, 0],
     "min_engine_version": [1, 26, 40]
   },
   "modules": [
     {
       "type": "data",
       "uuid": "55690dbf-d5e8-4b16-be99-154813da4a94",
-      "version": [1, 0, 0]
+      "version": [1, 2, 0]
     },
     {
       "type": "script",
       "language": "javascript",
       "entry": "scripts/main.js",
       "uuid": "30f60617-7011-4820-8f9f-dd88cb76eea8",
-      "version": [1, 0, 0]
+      "version": [1, 2, 0]
     }
   ],
   "dependencies": [
     {
       "uuid": "555605a4-1aad-4694-a73c-1fd518af72a8",
-      "version": [1, 0, 0]
+      "version": [1, 2, 0]
     },
     {
       "module_name": "@minecraft/server",

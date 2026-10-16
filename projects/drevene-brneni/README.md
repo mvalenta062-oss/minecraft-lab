@@ -1,10 +1,10 @@
-# Dřevěné brnění
+# Dřevěné brnění — aktualizace 1.2.0
 
-První verze nápadu: dřevěná košile s péřovou podšívkou, dostupná už na začátku přežití i v tvořivé hře. Dřevo chrání, peří odpružuje údery.
+Dřevěný kyrys s péřovou podšívkou. Vzhled tvoří dřevěné pláty, vystouplá hruď a ramenní chrániče; na textuře už není pírko. Identifikátor `factory:drevena_kosile` a UUID obou balíčků zůstávají stejné, takže jde o aktualizaci původního doplňku. Název předmětu je nově Dřevěný kyrys.
 
-## Recept a chování
+## Recept
 
-Na pracovním stole slož 7 libovolných polen (D) a 1 slepičí pírko (S). Druhy polen lze míchat; používá se skupina `minecraft:logs` jako u táboráku. Prkna už recept nepřijímá.
+Stejných 7 libovolných polen a 1 slepičí pírko na pracovním stole (D = poleno, S = pírko):
 
 ```text
 D D D
@@ -12,34 +12,40 @@ D S D
 D · D
 ```
 
-Tečka znamená prázdné políčko. Výsledkem je **Dřevěná košile s peřím** (`factory:drevena_kosile`), oblékaná místo hrudního brnění.
+Druhy polen lze míchat, prkna recept nepřijímá. Pírko zůstává uvnitř jako podšívka, pouze se nezobrazuje.
 
-- Při nošení ruší zranění hráče z přímých úderů mobů i ostatních hráčů, včetně smrtících úderů. Warden je výjimka a zraňuje normálně.
-- Zablokovaný úder útočníka odhodí směrem od hráče, pokud to daná entita dovoluje. Síla odražení je první návrh k vyzkoušení.
-- Střely, výbuchy, oheň, pády, magie a další příčiny zranění zůstávají beze změny. Ochrana zatím rozpoznává přímý úder (`entityAttack`), nikoli každé zranění od blízké entity.
-- Zatím nemá běžné body ochrany ani omezenou životnost; chrání skriptem proti uvedeným úderům. Další vlastnosti nejsou součástí zadání.
-- Na postavě má dřevěný vzor a světlé peří; náhledová ikona je čistě dřevěná bez pírka. Podporuje barvení v kotlíku; po obarvení se tónuje i péřový vzor.
+## Ochrana při nošení na hrudi
+
+- Přímé údery mobů a hráčů: zrušení zranění a odražení útočníka, jako dříve. Warden zůstává výjimkou.
+- Šípy (`minecraft:arrow`), hozený trojzubec (`minecraft:thrown_trident`) a přímý zásah ghastovou koulí (`minecraft:fireball`): zrušení přímého zranění. Střelec se neodráží. Ostatní střely se nemění.
+- Všechny výbuchy: snížení původního zranění na 50 %. Platí pro entityExplosion, blockExplosion i fireworks, tedy i TNT, nabitého creepera, ghastovu kouli a výbuch bez uvedeného původce. Nezaručuje přežití zblízka.
+- Pády, oheň, láva, magie a další příčiny zůstávají původní.
+- Bez běžných bodů ochrany a bez omezené životnosti. Barvení v kotlíku zůstává podporované; tónuje celý dřevěný model. Přidána součást enchantable pro hrudní brnění: běžné očarování Fire Protection může snížit zranění ohněm. Očarování řídí hra, skript jeho účinek nezdvojuje. Tato součást umožní také další běžná očarování hrudního brnění; nepřidáváme vlastní kouzla.
+
+Ochrana mění zranění, ne zničení okolních bloků, odhození hráče ani doprovodné účinky (například efekt otráveného šípu). Tyto okrajové případy je třeba ověřit ve hře. Zapíchnuté šípy mají vlastní dočasnou dekoraci: maximálně pět na hráče, každý mizí po 20 sekundách. Šestý nahradí nejstarší. Při sundání kyrysu, smrti, odchodu nebo změně dimenze se uklidí. Dekorace nemá kolizi ani útok, po odložení oblasti se neukládá; má i záložní časovač úklidu. Skutečný šíp ani trojzubec neodstraňujeme, aby jejich speciální účinky a návrat dál řídila hra.
 
 ## Zapnutí a zkouška ve hře
 
-Z kořene repozitáře spusť `npm run bedrock:deploy -- drevene-brneni`. Nasazení používá místní `bedrock.local.json`.
+Ze svého repozitáře spusť `npm run bedrock:deploy -- drevene-brneni`. Nástroj používá místní `bedrock.local.json` a přepíše pouze vlastní označené balíčky. Potom znovu načti svět, případně restartuj hru. Experimenty nejsou vyžadovány.
 
-1. Vytvoř zkušební svět a zapni balíček **Dřevěné brnění** v balíčcích chování; ověř i aktivní balíček vzhledu. Experimenty nejsou vyžadovány. Pro boj zvol obtížnost Snadná nebo vyšší.
-2. V tvořivé hře vyhledej košili mezi vybavením (nebo použij `/give @s factory:drevena_kosile`, pokud má svět povolené příkazy). Obleč ji a zkontroluj vzhled z pohledu třetí osoby.
-3. V přežití vyrob košili z polen a pírka. Zkus také směs různých polen a ověř, že prkna recept nepřijímá. Příkazy nejsou k výrobě potřeba.
-4. Nech se udeřit zombíkem: s košilí nesmějí ubýt srdíčka a zombík má odskočit. Sundej ji a porovnej další úder.
-5. Ve zkušebním světě ověř, že Warden zraňuje i s košilí a neodskakuje. Ověř také šíp kostlivce a pád: před těmi košile nechrání.
-6. Naplň kotlík vodou, přidej barvivo a použij na něj košili. Porovnej barvu v inventáři i po oblečení; vodou bez barviva zkus barvu smýt.
-7. Ulož svět a znovu jej načti; zkontroluj zachování barvy a ochrany.
+Ve zkušebním světě na obtížnost Snadná nebo vyšší:
 
-## Skutečný stav a další krok
+1. Obleč dříve vyrobený kus, případně použij `/give @s factory:drevena_kosile`. Zkontroluj pláty, ramena a nepřítomnost pírka při chůzi, běhu a plížení; vyzkoušej široké i úzké paže skinu.
+2. Zombík nemá ubrat srdíčka a má odskočit. Warden má stále zraňovat.
+3. Kostlivec nemá šípem ubrat srdíčka; po sundání kyrysu má zranění opět fungovat. Porovnej i hráčův šíp a dávkovač.
+4. Porovnej creepera s kyrysem a bez něj při stejném zdraví, vzdálenosti, obtížnosti a terénu. Kyrys má snížit zranění, ne ochránit okolní stavby. Nabitého creepera testuj zvlášť.
+5. Ověř poloviční zranění TNT a ghastovým výbuchem, zastavení přímého zásahu ghastovy koule i hozeného trojzubce. Pád a oheň mají dál zraňovat; otrávený šíp nesmí ubrat srdíčka nárazem, ale jed má působit. Zvlášť ověř odhození a návrat očarovaného trojzubce.
+6. Obarvi kyrys v kotlíku a smyj barvu čistou vodou. Ulož a znovu načti svět, ověř starý předmět i nově vyrobený kus.
 
-- Cíl podle společného nastavení při vytvoření: Bedrock 1.26.40, stabilní Script API 2.10.0. Verze nainstalované hry nebyla ověřena.
-- Prošla projektová validace JSON a manifestů, sestavení a kontrola TypeScriptu. Šest automatických testů s napodobeným herním API ověřilo větvení ochrany a odražení; nejde o herní test.
-- Uživatel 14. 10. 2026 potvrdil ve hře funkčnost aktuálního receptu z polen i chování brnění. Jednotlivé okrajové případy, barvení a zobrazení nové ikony nebyly potvrzeny zvlášť. Aktuální balíčky prošly validací a sestavením a byly nasazeny do Minecraftu. Na iPadu neověřeno.
-- Zrušení zranění nemusí zastavit doprovodné účinky útoku, například zapálení očarovanou zbraní či odhození hráče; to je potřeba vyzkoušet zvlášť.
-- Další krok při další zkoušce: ověřit barvení a dosud nepotvrzené okrajové případy podle postupu výše. Další herní úpravy podle přání autora.
+7. Nech se zasáhnout alespoň šesti šípy: má být vidět nejvýš pět a každý má po 20 sekundách zmizet. Ověř chůzi, otočení, plížení, sundání kyrysu, smrt, portál, odchod a opětovné načtení světa; vyzkoušej i dva hráče současně.
+8. Na očarovacím stole nebo knihou na kovadlině vyzkoušej Fire Protection a porovnej stejnou situaci s neokouzleným kyrysem. V testovacím světě lze použít i `/enchant @s fire_protection 4` s kyrysem v ruce. Kyrys zůstává nezničitelný.
 
-Kontroly: `npm run bedrock:validate -- drevene-brneni`, `npm run bedrock:build -- drevene-brneni`, `npx tsc -p projects/tsconfig.json`, `npm run lint`, `node --test projects/drevene-brneni/test/ochrana.test.js`.
+## Stav a další možnosti
 
-Použité reference: [rušení zranění](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/entityhurtbeforeevent?view=minecraft-bedrock-stable), [barvitelné předměty a jejich vykreslení](https://learn.microsoft.com/en-us/minecraft/creator/documents/addcustomitems?view=minecraft-bedrock-stable), [vzor hrudního brnění Mojangu](https://github.com/Mojang/bedrock-samples/blob/main/resource_pack/attachables/leather_chestplate.json).
+Původní recept a chování uživatel potvrdil ve hře 14. 10. 2026. Aktualizace 1.2.0 je připravená pro Bedrock 1.26.40 / stabilní Script API 2.10.0. Uživatel 16. 10. 2026 potvrdil vyzkoušení aktualizace v Minecraftu na Windows a spokojenost s výsledkem. Rozsah jednotlivých zkoušek nebyl upřesněn; okrajové případy z postupu výše nejsou samostatně potvrzené. Na iPadu zatím neověřeno. Výsledek kontrol nástroji je uveden v přiloženém souboru OVERENI.txt.
+
+Odsouhlaseno autorem: nezničitelnost, bez vlastní ochrany proti jedu, bez základní ochrany proti ohni, běžné Fire Protection, ochrana proti trojzubci, jednotná ochrana všech výbuchů a dočasně nejvýš pět šípů. Dekorace šípů sleduje polohu a vodorovné otočení hráče; není fyzikální simulací přesného místa zásahu. Její vzhled při plavání, létání a rychlém otáčení je třeba doladit podle herního testu.
+
+Kontroly: `npm run bedrock:validate -- drevene-brneni`, `npm run bedrock:build -- drevene-brneni`, `node --test "projects/drevene-brneni/test/*.test.js"`, `npm run lint`.
+
+Reference: [úprava původního zranění](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/entityhurtbeforeevent?view=minecraft-bedrock-stable), [vlastní model vybavení](https://learn.microsoft.com/en-us/minecraft/creator/documents/attachables?view=minecraft-bedrock-stable).

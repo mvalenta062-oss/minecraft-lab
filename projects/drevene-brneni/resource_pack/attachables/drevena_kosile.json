@@ -12,7 +12,7 @@
         "dyed": "textures/models/armor/drevena_kosile_dyed"
       },
       "geometry": {
-        "default": "geometry.humanoid.armor.chestplate"
+        "default": "geometry.factory.dreveny_kyrys"
       },
       "scripts": {
         "parent_setup": "variable.chest_layer_visible = 0.0;",

@@ -1,21 +1,40 @@
 import { EntityComponentTypes, EntityDamageCause, EquipmentSlot, system, world } from "@minecraft/server";
+import { zaznamenejSip } from "./sipy";
 
 world.beforeEvents.entityHurt.subscribe((event) => {
   const { hurtEntity: hrac, damageSource: zdroj } = event;
   const utocnik = zdroj.damagingEntity;
+  if (hrac.typeId !== "minecraft:player") return;
+  const vybaveni = hrac.getComponent(EntityComponentTypes.Equippable);
+  if (vybaveni?.getEquipment(EquipmentSlot.Chest)?.typeId !== "factory:drevena_kosile") return;
+
+  // Měníme původní zásah, nevytváříme náhradní zranění po explozi.
   if (
-    hrac.typeId !== "minecraft:player" ||
+    [EntityDamageCause.entityExplosion, EntityDamageCause.blockExplosion, EntityDamageCause.fireworks].includes(
+      zdroj.cause,
+    )
+  ) {
+    event.damage *= 0.5;
+    return;
+  }
+
+  if (zdroj.cause === EntityDamageCause.projectile) {
+    const strela = zdroj.damagingProjectile;
+    if (!strela || !["minecraft:arrow", "minecraft:thrown_trident", "minecraft:fireball"].includes(strela.typeId))
+      return;
+    event.cancel = true;
+    // Neodstraňujeme skutečný projektil: jeho jed, výbuch či návrat trojzubce řídí hra.
+    if (strela.typeId === "minecraft:arrow") zaznamenejSip(hrac, strela);
+    return;
+  }
+
+  if (
     zdroj.cause !== EntityDamageCause.entityAttack ||
     zdroj.damagingProjectile ||
     !utocnik ||
     utocnik.typeId === "minecraft:warden"
   )
     return;
-
-  const vybaveni = hrac.getComponent(EntityComponentTypes.Equippable);
-  if (vybaveni?.getEquipment(EquipmentSlot.Chest)?.typeId !== "factory:drevena_kosile") return;
-
-  // Zranění rušíme před odečtením srdíček; odhození musí počkat na další herní krok.
   event.cancel = true;
   system.run(() => {
     if (!hrac.isValid || !utocnik.isValid || hrac.dimension.id !== utocnik.dimension.id) return;
