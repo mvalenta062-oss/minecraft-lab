@@ -39,13 +39,13 @@ export const FAZE: Faze[] = [
   },
   {
     nazev: "Herní mechaniky",
-    popis: "Recepty, efekty a jednoduchá pravidla, aby to bylo zábavné i při hraní.",
-    stav: "plan",
+    popis: "Dřevěný kyrys má vlastní recept, odráží útočníky a chrání před šípy i částí zranění z výbuchů.",
+    stav: "hotovo",
   },
   {
     nazev: "První programování",
-    popis: "Skripty v JavaScriptu, když už JSON nestačí.",
-    stav: "plan",
+    popis: "Skripty už řídí ochranu dřevěného kyrysu i dočasně zapíchnuté šípy.",
+    stav: "hotovo",
   },
   {
     nazev: "Sdílení a vydání",
@@ -94,7 +94,7 @@ export const PROJEKTY: Projekt[] = [
   {
     nazev: "Dřevěné brnění",
     popis:
-      "Sedm polen, jedno pírko a odvaha vyrazit za dobrodružstvím. Dřevo drží stráž a peří odpruží údery: košile ochrání před útoky zblízka a odrazí útočníky. Jen na Wardena je krátká!",
+      "Nezničitelný dřevěný kyrys s pláty a ramenními chrániči. Zastaví přímé údery a odrazí útočníky — kromě Wardena. Zastaví i šípy, hozený trojzubec a přímý zásah ghastovou koulí; zranění ze všech výbuchů sníží na polovinu. Oheň, láva a jed dál zraňují, proti ohni může pomoci běžné očarování Fire Protection. Kyrys lze barvit v kotlíku a zdobí jej nejvýš pět zapíchnutých šípů, každý na 20 sekund.",
     stav: "hotovo",
     odkazStazeni: `${import.meta.env.BASE_URL}addony/drevene-brneni.mcaddon`,
     odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/drevene-brneni",
@@ -111,7 +111,7 @@ export const PROJEKTY: Projekt[] = [
         S: { nazev: "Slepičí pírko", obrazek: `${import.meta.env.BASE_URL}images/pirko.svg` },
       },
       popis:
-        "Na pracovním stole použij 7 libovolných polen a 1 slepičí pírko. Druhy polen můžeš míchat. Spodní prostřední políčko nech prázdné. Výsledkem je jedna dřevěná košile s peřím; obleč ji místo hrudního brnění.",
+        "Na pracovním stole použij 7 libovolných polen a 1 slepičí pírko. Druhy polen můžeš míchat. Spodní prostřední políčko nech prázdné. Výsledkem je jeden dřevěný kyrys; obleč jej místo hrudního brnění. Pírko slouží jako podšívka a na vzhledu není vidět.",
     },
   },
 ];
@@ -126,6 +126,13 @@ export interface Zapis {
 }
 
 export const DENIK: Zapis[] = [
+  {
+    datum: "2026-10-16",
+    nadpis: "Dřevěné brnění: od košile ke kyrysu",
+    text: `Máťa při hraní objevil slabiny svého prvního brnění: připomínalo spíš košili a před šípy ani creeperem nechránilo. Rozhodli jsme se proto vylepšit stejný doplněk — přidat výraznější dřevěné pláty a ramena a odstranit pírko z jeho vzhledu.
+
+Postupně jsme společně promysleli pravidla. Brnění zůstane nezničitelné, protože opravy na kovadlině by na začátku hry byly obtížné. Zastaví šípy a hozený trojzubec, zranění ze všech výbuchů sníží na polovinu. Oheň a jed zůstávají hrozbou; proti ohni může pomoci běžné očarování. Pro radost přibude i nejvýš pět dočasně zapíchnutých šípů.`,
+  },
   {
     datum: "2026-10-14",
     nadpis: "Dřevo, peří a velká radost",

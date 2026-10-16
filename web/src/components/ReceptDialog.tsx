@@ -68,8 +68,8 @@ export function ReceptDialog({ projekt, zavrit }: { projekt: Projekt | null; zav
           >
             →
           </Typography>
-          <Tooltip title="1× Dřevěná košile s peřím">
-            <Box role="img" aria-label="Výsledek: jedna dřevěná košile s peřím" sx={policko}>
+          <Tooltip title="1× Dřevěný kyrys">
+            <Box role="img" aria-label="Výsledek: jeden dřevěný kyrys" sx={policko}>
               <Box
                 component="img"
                 src={projekt?.nahled}
@@ -81,8 +81,9 @@ export function ReceptDialog({ projekt, zavrit }: { projekt: Projekt | null; zav
         </Stack>
         <Typography>{recept?.popis}</Typography>
         <Typography color="text.secondary" sx={{ mt: 2 }}>
-          V tvořivé hře košili najdeš rovnou v inventáři. Chrání před přímými údery kromě Wardena; šípy, výbuchy ani
-          pády nezastaví.
+          V tvořivé hře kyrys najdeš rovnou v inventáři. Zastaví přímé údery kromě Wardena, šípy, hozený trojzubec i
+          přímý zásah ghastovou koulí. Zranění ze všech výbuchů sníží na polovinu. Před pády, ohněm, lávou ani jedem sám
+          nechrání.
         </Typography>
       </DialogContent>
       <DialogActions>

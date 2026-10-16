@@ -5,15 +5,15 @@
     {
       "id": "drevene-brneni",
       "nazev": "Dřevěné brnění",
-      "popis": "Dřevěná košile s peřím (chování)",
-      "verze": "1.0.0",
+      "popis": "Dřevěný kyrys: údery, střely, výbuchy a očarování",
+      "verze": "1.2.0",
       "minecraft": "1.26.40",
       "packy": [
         "behavior_pack",
         "resource_pack"
       ],
       "url": "drevene-brneni.mcaddon",
-      "velikost": 26199
+      "velikost": 35934
     },
     {
       "id": "duhova-hlina",
