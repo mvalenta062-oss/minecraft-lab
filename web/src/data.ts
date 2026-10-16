@@ -59,6 +59,8 @@ export interface Projekt {
   nazev: string;
   popis: string;
   stav: Stav;
+  /** Úplné vlastnosti výtvoru v samostatném dialogu. */
+  podrobnosti?: { nadpis: string; text: string }[];
   /** Odkaz na hotový .mcaddon ke stažení (nepovinné) */
   odkazStazeni?: string;
   /** Odkaz na složku s projektem na GitHubu (nepovinné) */
@@ -94,7 +96,33 @@ export const PROJEKTY: Projekt[] = [
   {
     nazev: "Dřevěné brnění",
     popis:
-      "Nezničitelný dřevěný kyrys s pláty a ramenními chrániči. Zastaví přímé údery a odrazí útočníky — kromě Wardena. Zastaví i šípy, hozený trojzubec a přímý zásah ghastovou koulí; zranění ze všech výbuchů sníží na polovinu. Oheň, láva a jed dál zraňují, proti ohni může pomoci běžné očarování Fire Protection. Kyrys lze barvit v kotlíku a zdobí jej nejvýš pět zapíchnutých šípů, každý na 20 sekund.",
+      "Sedm polen, jedno pírko a nezničitelný kyrys na dobrodružství. Odrází útočníky, zastaví šípy a zmírní výbuchy. Jen na Wardena je krátký!",
+    podrobnosti: [
+      {
+        nadpis: "Údery zblízka",
+        text: "Zastaví úder a odrazí útočníka. Na Wardena neplatí.",
+      },
+      {
+        nadpis: "Šípy a další střely",
+        text: "Plná ochrana před přímým zásahem šípu, hozeného trojzubce a ghastovy koule. Jed ze šípu dál působí.",
+      },
+      {
+        nadpis: "Výbuchy: o 50 % menší zranění",
+        text: "Platí pro všechny výbuchy. Okolní bloky nechrání.",
+      },
+      {
+        nadpis: "Oheň, láva, jed a pády",
+        text: "Bez základní ochrany. Proti ohni může pomoci očarování Fire Protection. Ostatní zranění se nemění.",
+      },
+      {
+        nadpis: "Nezničitelný a barvitelný",
+        text: "Nepotřebuje opravy. Lze jej barvit v kotlíku a běžně očarovat.",
+      },
+      {
+        nadpis: "Zapíchnuté šípy",
+        text: "Nejvýš pět na hráči, každý na 20 sekund. Šestý nahradí nejstarší.",
+      },
+    ],
     stav: "hotovo",
     odkazStazeni: `${import.meta.env.BASE_URL}addony/drevene-brneni.mcaddon`,
     odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/drevene-brneni",

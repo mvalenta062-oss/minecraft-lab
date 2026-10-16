@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogTitle,
   Stack,
+  SvgIcon,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -24,7 +25,15 @@ export function ReceptDialog({ projekt, zavrit }: { projekt: Projekt | null; zav
   };
   return (
     <Dialog open={Boolean(recept)} onClose={zavrit} maxWidth="sm" fullWidth aria-labelledby="recept-nadpis">
-      <DialogTitle id="recept-nadpis">Recept: {projekt?.nazev}</DialogTitle>
+      <DialogTitle id="recept-nadpis" sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+        <SvgIcon viewBox="0 0 16 16" aria-hidden="true" sx={{ flexShrink: 0 }}>
+          <path fill="#68442b" d="M1 5h14v10H1z" />
+          <path fill="#bc8751" d="M1 1h14v5H1z" />
+          <path fill="#593b26" d="M5 1h1v5H5zm5 0h1v5h-1zM1 3h14v1H1zM3 7h2v8H3zm8 0h2v8h-2z" />
+          <path fill="#d5ad72" d="M6 7h4v5H6z" />
+        </SvgIcon>
+        {projekt?.nazev}
+      </DialogTitle>
       <DialogContent>
         <Typography variant="h3" sx={{ mb: 2 }}>
           Pracovní stůl
@@ -81,9 +90,8 @@ export function ReceptDialog({ projekt, zavrit }: { projekt: Projekt | null; zav
         </Stack>
         <Typography>{recept?.popis}</Typography>
         <Typography color="text.secondary" sx={{ mt: 2 }}>
-          V tvořivé hře kyrys najdeš rovnou v inventáři. Zastaví přímé údery kromě Wardena, šípy, hozený trojzubec i
-          přímý zásah ghastovou koulí. Zranění ze všech výbuchů sníží na polovinu. Před pády, ohněm, lávou ani jedem sám
-          nechrání.
+          V tvořivé hře kyrys najdeš rovnou v inventáři. Úplný přehled jeho vlastností najdeš na kartě výtvoru pod
+          tlačítkem Podrobnosti.
         </Typography>
       </DialogContent>
       <DialogActions>

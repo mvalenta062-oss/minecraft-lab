@@ -3,12 +3,14 @@ import { PROJEKTY } from "../data";
 import type { Projekt } from "../data";
 import { useState } from "react";
 import { ReceptDialog } from "./ReceptDialog";
+import { PodrobnostiDialog } from "./PodrobnostiDialog";
 import { Sekce } from "./Sekce";
 import { StavChip } from "./StavChip";
 import { barvy } from "../theme";
 
 export function Vytvory() {
   const [receptProjekt, nastavReceptProjekt] = useState<Projekt | null>(null);
+  const [detailProjekt, nastavDetailProjekt] = useState<Projekt | null>(null);
   return (
     <Sekce id="vytvory" nadpis="Výtvory">
       <Box
@@ -87,22 +89,24 @@ export function Vytvory() {
                   <Typography variant="h4" sx={{ color: barvy.lampa, mb: 1 }}>
                     {p.nazev}
                   </Typography>
-                  <Stack direction="row" spacing={1} alignItems="center" useFlexGap flexWrap="wrap">
-                    <StavChip stav={p.stav} />
-                    {p.recept && (
-                      <Tooltip title="Jak vyrobit: recept na pracovním stole">
+                  <StavChip stav={p.stav} />
+                  {(p.podrobnosti || p.recept) && (
+                    <Stack direction="row" spacing={1} alignItems="center" useFlexGap flexWrap="wrap" sx={{ mt: 1 }}>
+                      {p.podrobnosti && (
                         <Button
                           size="small"
                           variant="text"
-                          onClick={() => nastavReceptProjekt(p)}
+                          onClick={() => nastavDetailProjekt(p)}
                           aria-haspopup="dialog"
-                          aria-label={`Recept: ${p.nazev}`}
+                          aria-label={`Podrobnosti: ${p.nazev}`}
                           startIcon={
                             <SvgIcon viewBox="0 0 16 16" sx={{ fontSize: 20 }} aria-hidden="true">
-                              <path fill="#68442b" d="M1 5h14v10H1z" />
-                              <path fill="#bc8751" d="M1 1h14v5H1z" />
-                              <path fill="#593b26" d="M5 1h1v5H5zm5 0h1v5h-1zM1 3h14v1H1zM3 7h2v8H3zm8 0h2v8h-2z" />
-                              <path fill="#d5ad72" d="M6 7h4v5H6z" />
+                              <path fill="#68442b" d="M1 2h6l1 1 1-1h6v12H9l-1 1-1-1H1z" />
+                              <path fill="#e6d2a6" d="M2 1h4l2 2 2-2h4v11h-4l-2 1-2-1H2z" />
+                              <path
+                                fill="#bc8751"
+                                d="M7 3h2v10H7zM3 4h3v1H3zm0 3h3v1H3zm0 3h3v1H3zm7-6h3v1h-3zm0 3h3v1h-3zm0 3h3v1h-3z"
+                              />
                             </SvgIcon>
                           }
                           sx={{
@@ -116,17 +120,56 @@ export function Vytvory() {
                             "&:active": { transform: "none", boxShadow: "none" },
                           }}
                         >
-                          Recept
+                          Podrobnosti
                         </Button>
-                      </Tooltip>
-                    )}
-                  </Stack>
+                      )}
+                      {p.recept && (
+                        <Tooltip title="Jak vyrobit: recept na pracovním stole">
+                          <Button
+                            size="small"
+                            variant="text"
+                            onClick={() => nastavReceptProjekt(p)}
+                            aria-haspopup="dialog"
+                            aria-label={`Recept: ${p.nazev}`}
+                            startIcon={
+                              <SvgIcon viewBox="0 0 16 16" sx={{ fontSize: 20 }} aria-hidden="true">
+                                <path fill="#68442b" d="M1 5h14v10H1z" />
+                                <path fill="#bc8751" d="M1 1h14v5H1z" />
+                                <path fill="#593b26" d="M5 1h1v5H5zm5 0h1v5h-1zM1 3h14v1H1zM3 7h2v8H3zm8 0h2v8h-2z" />
+                                <path fill="#d5ad72" d="M6 7h4v5H6z" />
+                              </SvgIcon>
+                            }
+                            sx={{
+                              p: "2px 6px",
+                              minWidth: 0,
+                              minHeight: 32,
+                              fontSize: "0.85rem",
+                              color: "text.secondary",
+                              border: 0,
+                              boxShadow: "none",
+                              "&:active": { transform: "none", boxShadow: "none" },
+                            }}
+                          >
+                            Recept
+                          </Button>
+                        </Tooltip>
+                      )}
+                    </Stack>
+                  )}
                 </Box>
               </Stack>
               <Typography color="text.secondary" sx={{ flex: 1 }}>
                 {p.popis}
               </Typography>
-              <Stack direction="row" spacing={1.5} alignItems="center" useFlexGap flexWrap="wrap" sx={{ mt: 2 }}>
+              <Stack
+                direction="row"
+                spacing={1.5}
+                alignItems="center"
+                justifyContent="center"
+                useFlexGap
+                flexWrap="wrap"
+                sx={{ mt: 2 }}
+              >
                 {p.platformy?.map(({ platforma, overeno }) => {
                   const popisek = `${platforma === "windows" ? "Windows" : "iPad"}: ${overeno ? "ověřeno ve hře" : "zatím neověřeno"}`;
                   return (
@@ -173,13 +216,27 @@ export function Vytvory() {
                   </Tooltip>
                 ))}
                 {p.odkazZdroj && (
-                  <Link
-                    href={p.odkazZdroj}
-                    aria-label={`Repozitář: ${p.nazev}`}
-                    sx={{ ml: "auto", fontSize: "0.9rem", whiteSpace: "nowrap" }}
-                  >
-                    Repo
-                  </Link>
+                  <Tooltip title="Zdrojové soubory">
+                    <Link
+                      href={p.odkazZdroj}
+                      aria-label={`Zdrojové soubory: ${p.nazev}`}
+                      sx={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        minWidth: 32,
+                        minHeight: 32,
+                        color: "text.secondary",
+                      }}
+                    >
+                      <SvgIcon viewBox="0 0 24 24" aria-hidden="true" sx={{ fontSize: 23 }}>
+                        <path
+                          fill="currentColor"
+                          d="M22.5 10.6 13.4 1.5a2 2 0 0 0-2.8 0L8.7 3.4l2.4 2.4a2 2 0 0 1 2.5 2.5l2.3 2.3a2 2 0 1 1-1.4 1.4l-2.1-2.1v5.5a2 2 0 1 1-2 0V9.1a2 2 0 0 1-.7-2L7.3 4.8l-5.8 5.8a2 2 0 0 0 0 2.8l9.1 9.1a2 2 0 0 0 2.8 0l9.1-9.1a2 2 0 0 0 0-2.8Z"
+                        />
+                      </SvgIcon>
+                    </Link>
+                  </Tooltip>
                 )}
               </Stack>
               <Stack
@@ -202,6 +259,7 @@ export function Vytvory() {
         ))}
       </Grid>
       <ReceptDialog projekt={receptProjekt} zavrit={() => nastavReceptProjekt(null)} />
+      <PodrobnostiDialog projekt={detailProjekt} zavrit={() => nastavDetailProjekt(null)} />
     </Sekce>
   );
 }
