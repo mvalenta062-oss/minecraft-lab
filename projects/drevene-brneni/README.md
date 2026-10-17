@@ -42,7 +42,7 @@ Ve zkušebním světě na obtížnost Snadná nebo vyšší:
 
 ## Stav a další možnosti
 
-Původní recept a chování uživatel potvrdil ve hře 14. 10. 2026. Aktualizace 1.2.0 je připravená pro Bedrock 1.26.40 / stabilní Script API 2.10.0. Uživatel 16. 10. 2026 potvrdil vyzkoušení aktualizace v Minecraftu na Windows a spokojenost s výsledkem. Rozsah jednotlivých zkoušek nebyl upřesněn; okrajové případy z postupu výše nejsou samostatně potvrzené. Na iPadu zatím neověřeno. Výsledek kontrol nástroji je uveden v přiloženém souboru OVERENI.txt.
+Původní recept a chování uživatel potvrdil ve hře 14. 10. 2026. Aktualizace 1.2.0 je připravená pro Bedrock 1.26.40 / stabilní Script API 2.10.0. Uživatel 16. 10. 2026 potvrdil vyzkoušení aktualizace v Minecraftu na Windows a spokojenost s výsledkem. Rozsah jednotlivých zkoušek nebyl upřesněn; okrajové případy z postupu výše nejsou samostatně potvrzené. Uživatel 17. 10. 2026 potvrdil funkčnost také na iPadu; rozsah jednotlivých zkoušek nebyl upřesněn. Výsledek kontrol nástroji je uveden v přiloženém souboru OVERENI.txt.
 
 Odsouhlaseno autorem: nezničitelnost, bez vlastní ochrany proti jedu, bez základní ochrany proti ohni, běžné Fire Protection, ochrana proti trojzubci, jednotná ochrana všech výbuchů a dočasně nejvýš pět šípů. Dekorace šípů sleduje polohu a vodorovné otočení hráče; není fyzikální simulací přesného místa zásahu. Její vzhled při plavání, létání a rychlém otáčení je třeba doladit podle herního testu.
 

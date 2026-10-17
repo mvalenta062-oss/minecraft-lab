@@ -11,6 +11,6 @@ Zdroje aktualizace byly importovány do stávajícího projektu; UUID balíčků
 
 Uživatel 16. 10. 2026 potvrdil vyzkoušení aktualizace v Minecraftu na Windows a spokojenost s výsledkem. Rozsah jednotlivých zkoušek nebyl upřesněn.
 
-Na iPadu zatím neověřeno. Nový .mcaddon 1.2.0 je připravený ve web/public/addony/ pro vydání s aktualizovaným webem; samotné vytvoření balíčku jej nezveřejňuje.
+Uživatel 17. 10. 2026 potvrdil funkčnost také na iPadu; rozsah jednotlivých zkoušek nebyl upřesněn. Nový .mcaddon 1.2.0 je připravený ve web/public/addony/ pro vydání s aktualizovaným webem; samotné vytvoření balíčku jej nezveřejňuje.
 Samostatně nepotvrzené okrajové případy: šípy při pohybu, jed po zrušeném zásahu, jednotlivé složky ghastova útoku a Fire Protection na nezničitelném předmětu bez běžných bodů ochrany.
-Další krok: podle potřeby dokončit jednotlivé zkoušky podle README.md a ověřit kompatibilitu na iPadu.
+Další krok: podle potřeby dokončit jednotlivé zkoušky podle README.md na Windows i iPadu.

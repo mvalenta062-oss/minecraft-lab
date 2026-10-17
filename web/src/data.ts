@@ -81,17 +81,44 @@ export interface Projekt {
 
 export const PROJEKTY: Projekt[] = [
   {
-    nazev: "Duhová hlína",
-    popis: "Duhové proužky a barevné skvrnky ze všech stran. Na stavění v kreativním režimu.",
+    nazev: "Lucky block",
+    popis:
+      "Zlatá krabička s překvapením. Udeř do ní, sleduj blikající otazníky a za tři sekundy sesbírej náhodné odměny!",
     stav: "hotovo",
-    odkazStazeni: `${import.meta.env.BASE_URL}addony/duhova-hlina.mcaddon`,
+    odkazStazeni: `${import.meta.env.BASE_URL}addony/lucky-block.mcaddon`,
+    odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/lucky-block",
+    nahled: `${import.meta.env.BASE_URL}images/lucky-block.png`,
     rezimy: ["creative"],
-    nahled: `${import.meta.env.BASE_URL}images/duhova-hlina.png`,
     platformy: [
       { platforma: "windows", overeno: true },
-      { platforma: "ipad", overeno: true },
+      { platforma: "ipad", overeno: false },
     ],
-    odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/duhova-hlina",
+    podrobnosti: [
+      {
+        nadpis: "Z Creativu do Survivalu",
+        text: "V kreativním inventáři vyhledej Lucky block a vezmi si několik krabiček. Potom přepni do Survivalu. Krabička nemá výrobní recept a při začátku hry se automaticky nerozdává.",
+      },
+      {
+        nadpis: "Polož, udeř a počkej",
+        text: "Polož krabičku na zem a udeř do ní nebo ji začni těžit. Bílé otazníky začnou blikat. Asi za tři sekundy krabička zmizí a odměny vyletí ven.",
+      },
+      {
+        nadpis: "Co může vypadnout?",
+        text: "Pokaždé 3–7 různých druhů z celého seznamu předmětů ve hře, včetně bloků, nástrojů, brnění a vajíček. Může padnout i další Lucky block nebo předmět z jiného aktivního doplňku. Vzduch se nelosuje.",
+      },
+      {
+        nadpis: "Náhodné množství",
+        text: "Od každého druhu dostaneš 1–16 kusů podle náhody a velikosti hromádky. Nástroje a brnění padají po jednom. Očarování ani další zvláštní varianty se nelosují.",
+      },
+      {
+        nadpis: "Bouchnutí bez kráteru",
+        text: "Otevření doprovází zvuk a obláček. Samotné bouchnutí nezraňuje a neničí okolní bloky.",
+      },
+      {
+        nadpis: "Ověřeno ve hře",
+        text: "Vzhled, otevření i rozšířený výběr odměn jsme ověřili v Minecraft Bedrock na Windows. iPad zatím není otestovaný. Experimenty nejsou potřeba.",
+      },
+    ],
   },
   {
     nazev: "Dřevěné brnění",
@@ -130,7 +157,7 @@ export const PROJEKTY: Projekt[] = [
     rezimy: ["creative", "survival"],
     platformy: [
       { platforma: "windows", overeno: true },
-      { platforma: "ipad", overeno: false },
+      { platforma: "ipad", overeno: true },
     ],
     recept: {
       radky: ["DDD", "DSD", "D D"],
@@ -141,6 +168,30 @@ export const PROJEKTY: Projekt[] = [
       popis:
         "Na pracovním stole použij 7 libovolných polen a 1 slepičí pírko. Druhy polen můžeš míchat. Spodní prostřední políčko nech prázdné. Výsledkem je jeden dřevěný kyrys; obleč jej místo hrudního brnění. Pírko slouží jako podšívka a na vzhledu není vidět.",
     },
+  },
+  {
+    nazev: "Duhová hlína",
+    popis: "Duhové proužky a barevné skvrnky ze všech stran. Na stavění v kreativním režimu.",
+    podrobnosti: [
+      {
+        nadpis: "Jak ji získat",
+        text: "V kreativním inventáři vyhledej Duhová hlína. Recept pro přežití nemá.",
+      },
+      {
+        nadpis: "Duhové stavění",
+        text: "Polož ji jako běžnou kostičku a stav podle fantazie. Duhové proužky a barevné skvrnky má na všech stranách.",
+      },
+      { nadpis: "Ověřeno ve hře", text: "Funguje v Minecraft Bedrock na Windows i na iPadu." },
+    ],
+    stav: "hotovo",
+    odkazStazeni: `${import.meta.env.BASE_URL}addony/duhova-hlina.mcaddon`,
+    rezimy: ["creative"],
+    nahled: `${import.meta.env.BASE_URL}images/duhova-hlina.png`,
+    platformy: [
+      { platforma: "windows", overeno: true },
+      { platforma: "ipad", overeno: true },
+    ],
+    odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/duhova-hlina",
   },
 ];
 
@@ -154,6 +205,13 @@ export interface Zapis {
 }
 
 export const DENIK: Zapis[] = [
+  {
+    datum: "2026-10-17",
+    nadpis: "Lucky block: co se skrývá pod otazníkem?",
+    text: `Máťa vymyslel **Lucky block**: zlatou krabičku s bílými otazníky a překvapením uvnitř. Vezmeš ji v Creativu, položíš a v Survivalu do ní udeříš. Otazníky zablikají a asi za tři sekundy krabička bouchne — jen zvukem a obláčkem, bez kráteru a zranění.
+
+Nejdřív jsme losovali z deseti druhů zásob, ale při hraní se moc opakovaly. Máťa chtěl raději **všechny možné věci**. Krabička proto vybírá z celého herního seznamu: vyletí 3–7 různých druhů a náhodné množství. Nový výběr jsme vyzkoušeli ve hře a funguje podle představ. Na Windows ověřeno, iPad ještě čeká.`,
+  },
   {
     datum: "2026-10-16",
     nadpis: "Dřevěné brnění: od košile ke kyrysu",

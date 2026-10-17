@@ -24,6 +24,17 @@ export function PodrobnostiDialog({ projekt, zavrit }: { projekt: Projekt | null
       </DialogTitle>
       <DialogContent>
         <Stack spacing={2.5}>
+          <Stack direction="row" spacing={2} alignItems="center">
+            {projekt?.nahled && (
+              <Box
+                component="img"
+                src={projekt.nahled}
+                alt={`Náhled: ${projekt.nazev}`}
+                sx={{ width: 72, height: 72, flexShrink: 0, imageRendering: "pixelated", borderRadius: 1 }}
+              />
+            )}
+            <Typography color="text.secondary">{projekt?.popis}</Typography>
+          </Stack>
           {projekt?.podrobnosti?.map(({ nadpis, text }) => (
             <Box key={nadpis}>
               <Typography variant="h3" sx={{ mb: 0.75 }}>

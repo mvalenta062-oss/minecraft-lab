@@ -27,6 +27,19 @@
       ],
       "url": "duhova-hlina.mcaddon",
       "velikost": 5578
+    },
+    {
+      "id": "lucky-block",
+      "nazev": "Lucky block",
+      "popis": "Lucky block (chování)",
+      "verze": "1.0.0",
+      "minecraft": "1.26.40",
+      "packy": [
+        "behavior_pack",
+        "resource_pack"
+      ],
+      "url": "lucky-block.mcaddon",
+      "velikost": 6178
     }
   ]
 }
