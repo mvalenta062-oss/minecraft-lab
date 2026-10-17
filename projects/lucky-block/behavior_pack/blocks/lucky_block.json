@@ -1,0 +1,50 @@
+{
+  "format_version": "1.26.40",
+  "minecraft:block": {
+    "description": {
+      "identifier": "factory:lucky_block",
+      "menu_category": {
+        "category": "construction"
+      },
+      "states": {
+        "factory:phase": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+      }
+    },
+    "components": {
+      "minecraft:display_name": "tile.factory:lucky_block.name",
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "factory_lucky_block",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.2
+      },
+      "minecraft:destructible_by_explosion": false,
+      "minecraft:movable": {
+        "movement_type": "immovable"
+      },
+      "minecraft:loot": "loot_tables/blocks/empty.json",
+      "minecraft:tick": {
+        "interval_range": [5, 5],
+        "looping": true
+      },
+      "factory:lucky_timer": {}
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('factory:phase') > 0 && math.mod(q.block_state('factory:phase'), 2) == 0",
+        "components": {
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "factory_lucky_blank",
+              "render_method": "opaque"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Lucky block",
+    "description": "Lucky block (chování)",
+    "uuid": "87ba4c57-5e81-4b36-9b05-7a2532feaebf",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "8c6bde52-b049-4a7f-b7fe-dcc5ebef711d",
+      "version": [1, 0, 0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "394665f2-b50e-4163-951f-e969815fbcd9",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "1e0a58da-1ebc-4922-b413-53074cb2116f",
+      "version": [1, 0, 0]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.10.0"
+    }
+  ]
+}

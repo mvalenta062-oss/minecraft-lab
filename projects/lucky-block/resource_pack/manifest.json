@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Lucky block",
+    "description": "Lucky block (vzhled)",
+    "uuid": "1e0a58da-1ebc-4922-b413-53074cb2116f",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "8ba46721-5287-46a6-916c-b19146e93fb1",
+      "version": [1, 0, 0]
+    }
+  ]
+}

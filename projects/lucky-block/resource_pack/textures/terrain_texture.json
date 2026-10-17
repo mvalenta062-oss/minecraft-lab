@@ -1,0 +1,12 @@
+{
+  "resource_pack_name": "lucky_block",
+  "texture_name": "atlas.terrain",
+  "texture_data": {
+    "factory_lucky_block": {
+      "textures": "textures/blocks/lucky_block"
+    },
+    "factory_lucky_blank": {
+      "textures": "textures/blocks/lucky_blank"
+    }
+  }
+}
