@@ -60,7 +60,11 @@ export interface Projekt {
   popis: string;
   stav: Stav;
   /** Úplné vlastnosti výtvoru v samostatném dialogu. */
-  podrobnosti?: { nadpis: string; text: string }[];
+  podrobnosti?: {
+    nadpis: string;
+    text: string;
+    predmety?: { nazev: string; obrazek: string }[];
+  }[];
   /** Odkaz na hotový .mcaddon ke stažení (nepovinné) */
   odkazStazeni?: string;
   /** Odkaz na složku s projektem na GitHubu (nepovinné) */
@@ -81,6 +85,60 @@ export interface Projekt {
 
 export const PROJEKTY: Projekt[] = [
   {
+    nazev: "Smaragdové vybavení",
+    popis:
+      "Dej smaragdům novou práci! Vyrob si zelený meč, čtyři pracovní nástroje a celé brnění. Známé recepty, nový kámen a trochu menší výdrž než u diamantu.",
+    stav: "hotovo",
+    odkazStazeni: `${import.meta.env.BASE_URL}addony/smaragdove-vybaveni.mcaddon`,
+    odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/smaragdove-vybaveni",
+    nahled: `${import.meta.env.BASE_URL}images/smaragdove-vybaveni.png`,
+    rezimy: ["creative", "survival"],
+    platformy: [
+      { platforma: "windows", overeno: true },
+      { platforma: "ipad", overeno: false },
+    ],
+    podrobnosti: [
+      {
+        nadpis: "Devět zelených kousků",
+        text: "Meč, krumpáč, sekera, lopata, motyka, helma, kyrys, kalhoty a boty. V kreativním inventáři vyhledej Smaragd. Brnění je zelené také po oblečení.",
+        predmety: [
+          ["Meč", "smaragdovy_mec"],
+          ["Krumpáč", "smaragdovy_krumpac"],
+          ["Sekera", "smaragdova_sekera"],
+          ["Lopata", "smaragdova_lopata"],
+          ["Motyka", "smaragdova_motyka"],
+          ["Helma", "smaragdova_helma"],
+          ["Kyrys", "smaragdovy_kyrys"],
+          ["Kalhoty", "smaragdove_kalhoty"],
+          ["Boty", "smaragdove_boty"],
+        ].map(([nazev, soubor]) => ({
+          nazev,
+          obrazek: `${import.meta.env.BASE_URL}images/smaragdove-vybaveni/${soubor}.png`,
+        })),
+      },
+      {
+        nadpis: "Diamantové recepty se smaragdy",
+        text: "Na pracovním stole použij stejné tvary jako u diamantového vybavení, jen diamanty nahraď smaragdy. Na celou sadu potřebuješ 35 smaragdů a 9 tyček. Původní diamantové vybavení zůstává ve hře.",
+      },
+      {
+        nadpis: "O trochu slabší než diamant",
+        text: "Nástroje mají 1405 bodů výdrže místo diamantových 1561. Brnění má přibližně o 10 % menší výdrž a celá sada dává 18 bodů ochrany místo 20. Síla a rychlost jsou také nižší; kvůli zaokrouhlení nejde všude přesně o 10 %.",
+      },
+      {
+        nadpis: "Do dolu, na zahradu i do lesa",
+        text: "Krumpáč zachovává diamantovou úroveň těžby. Sekera umí odkorňovat dřevo, lopata tvoří cestičky a motyka obdělává půdu. Měď sekerou zatím neošetříš a lopata nehasí táborák.",
+      },
+      {
+        nadpis: "Opravy a očarování",
+        text: "Vybavení můžeš běžně očarovat a opravovat smaragdy na kovadlině. Jeden smaragd obnoví přibližně čtvrtinu výdrže daného kusu.",
+      },
+      {
+        nadpis: "Vyzkoušeno na Windows",
+        text: "Celá sada prošla první herní zkouškou v Minecraft Bedrock na Windows a autorovi se moc líbí. Jednotlivé mechaniky ještě průběžně ověřujeme. iPad zatím není otestovaný. Zapni balíček chování i vzhledu; experimenty nejsou potřeba.",
+      },
+    ],
+  },
+  {
     nazev: "Lucky block",
     popis:
       "Zlatá krabička s překvapením. Udeř do ní, sleduj blikající otazníky a za tři sekundy sesbírej náhodné odměny!",
@@ -91,7 +149,7 @@ export const PROJEKTY: Projekt[] = [
     rezimy: ["creative"],
     platformy: [
       { platforma: "windows", overeno: true },
-      { platforma: "ipad", overeno: false },
+      { platforma: "ipad", overeno: true },
     ],
     podrobnosti: [
       {
@@ -116,7 +174,7 @@ export const PROJEKTY: Projekt[] = [
       },
       {
         nadpis: "Ověřeno ve hře",
-        text: "Vzhled, otevření i rozšířený výběr odměn jsme ověřili v Minecraft Bedrock na Windows. iPad zatím není otestovaný. Experimenty nejsou potřeba.",
+        text: "Vzhled, otevření i rozšířený výběr odměn jsme ověřili v Minecraft Bedrock na Windows. Uživatel potvrdil také úspěšnou zkoušku na iPadu. Experimenty nejsou potřeba.",
       },
     ],
   },
@@ -205,6 +263,15 @@ export interface Zapis {
 }
 
 export const DENIK: Zapis[] = [
+  {
+    datum: "2026-10-22",
+    nadpis: "Smaragdy patří i do výbavy!",
+    text: `Co kdyby šlo diamantové vybavení vyrábět ze **smaragdů**? Máťa chtěl zelenou sadu, která bude o trochu slabší než diamantová. Domluvili jsme se na přibližně **10 % menší výdrži** a pustili se do meče a krumpáče.
+
+Při zkoušení Máťa odhalil i drobnosti v kresbě: zelenající dřevo, krátkou násadu a její zvláštní konec. Ladili jsme jednotlivé pixely, až dřevo přirozeně procházelo pod zelenou hlavou krumpáče.
+
+Pak přibyla sekera, lopata, motyka a všechny čtyři části brnění. **Celá smaragdová sada už prošla první zkouškou ve hře na Windows a má úspěch!** Recepty známe z diamantového vybavení, jen v nich vyměníme kámen. Další podrobnosti mechanik budeme ověřovat při hraní; iPad zatím čeká.`,
+  },
   {
     datum: "2026-10-17",
     nadpis: "Lucky block: co se skrývá pod otazníkem?",

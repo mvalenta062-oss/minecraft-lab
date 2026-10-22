@@ -40,6 +40,19 @@
       ],
       "url": "lucky-block.mcaddon",
       "velikost": 6178
+    },
+    {
+      "id": "smaragdove-vybaveni",
+      "nazev": "Smaragdové vybavení",
+      "popis": "Kompletní smaragdová sada: pět nástrojů a čtyři části brnění",
+      "verze": "1.1.0",
+      "minecraft": "1.26.40",
+      "packy": [
+        "behavior_pack",
+        "resource_pack"
+      ],
+      "url": "smaragdove-vybaveni.mcaddon",
+      "velikost": 20572
     }
   ]
 }

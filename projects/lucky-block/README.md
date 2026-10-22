@@ -41,10 +41,11 @@ Uživatel při testu v Minecraftu potvrdil vzhled a fungování krabičky podle
 představ. Dne 17. 10. 2026 potvrdil také úspěšný test rozšířeného losování
 z celého herního seznamu: „funguje úplně skvěle“. Původní opakování druhů
 z malé nabídky je tím vyřešené. Kontroly a simulace aktuálního skriptu
-mimo Minecraft rovněž prošly. iPad není ověřen.
+mimo Minecraft rovněž prošly. Dne 22. 10. 2026 uživatel potvrdil také
+úspěšné vyzkoušení balíčku na iPadu; rozsah jednotlivých zkoušek nebyl upřesněn.
 
-První funkční verze je ověřená uživatelem ve hře. Případný další krok je
-praktický test na iPadu. Samostatné okrajové scénáře z postupu výše
+První funkční verze je ověřená uživatelem na Windows i na iPadu. Další krok
+jsou případné úpravy podle dalšího hraní. Samostatné okrajové scénáře z postupu výše
 (například odchod během odpočtu) uživatel výslovně nepotvrdil.
 Při pomalejším běhu hry může odpočet trvat déle; v nenačtené oblasti stojí.
 Pokud blok chybí, zkontroluj Content Log.

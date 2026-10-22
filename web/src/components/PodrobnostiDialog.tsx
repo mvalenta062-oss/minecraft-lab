@@ -35,12 +35,45 @@ export function PodrobnostiDialog({ projekt, zavrit }: { projekt: Projekt | null
             )}
             <Typography color="text.secondary">{projekt?.popis}</Typography>
           </Stack>
-          {projekt?.podrobnosti?.map(({ nadpis, text }) => (
+          {projekt?.podrobnosti?.map(({ nadpis, text, predmety }) => (
             <Box key={nadpis}>
               <Typography variant="h3" sx={{ mb: 0.75 }}>
                 {nadpis}
               </Typography>
               <Typography color="text.secondary">{text}</Typography>
+              {predmety && (
+                <Box
+                  component="ul"
+                  aria-label="Přehled vybavení"
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: { xs: "repeat(3, minmax(0, 1fr))", sm: "repeat(5, minmax(0, 1fr))" },
+                    gap: 1.5,
+                    listStyle: "none",
+                    p: 0,
+                    mt: 2,
+                    mb: 0,
+                  }}
+                >
+                  {predmety.map(({ nazev, obrazek }) => (
+                    <Box
+                      component="li"
+                      key={nazev}
+                      sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 0.75, py: 1 }}
+                    >
+                      <Box
+                        component="img"
+                        src={obrazek}
+                        alt=""
+                        sx={{ width: 48, height: 48, imageRendering: "pixelated" }}
+                      />
+                      <Typography variant="body2" color="text.secondary" sx={{ textAlign: "center" }}>
+                        {nazev}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
+              )}
             </Box>
           ))}
         </Stack>
