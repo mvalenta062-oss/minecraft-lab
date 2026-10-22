@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "factory:smaragdovy_krumpac"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["EEE", " S ", " S "],
+    "key": {
+      "E": {
+        "item": "minecraft:emerald"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:emerald"
+      }
+    ],
+    "result": {
+      "item": "factory:smaragdovy_krumpac",
+      "count": 1
+    }
+  }
+}

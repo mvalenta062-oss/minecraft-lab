@@ -1,0 +1,45 @@
+{
+  "format_version": "1.26.40",
+  "minecraft:item": {
+    "description": {
+      "identifier": "factory:smaragdovy_kyrys",
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.chestplate"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "item.factory:smaragdovy_kyrys.name"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "smaragdovy_kyrys"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:durability": {
+        "max_durability": 475
+      },
+      "minecraft:enchantable": {
+        "slot": "armor_torso",
+        "value": 10
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["minecraft:emerald"],
+            "repair_amount": 118
+          }
+        ]
+      },
+      "minecraft:wearable": {
+        "slot": "slot.armor.chest",
+        "protection": 7
+      },
+      "minecraft:tags": {
+        "tags": ["minecraft:diamond_tier", "minecraft:is_chestplate"]
+      }
+    }
+  }
+}

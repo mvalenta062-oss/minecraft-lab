@@ -1,0 +1,33 @@
+{
+  "resource_pack_name": "smaragdove_vybaveni",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "smaragdovy_mec": {
+      "textures": "textures/items/smaragdovy_mec"
+    },
+    "smaragdovy_krumpac": {
+      "textures": "textures/items/smaragdovy_krumpac"
+    },
+    "smaragdova_sekera": {
+      "textures": "textures/items/smaragdova_sekera"
+    },
+    "smaragdova_lopata": {
+      "textures": "textures/items/smaragdova_lopata"
+    },
+    "smaragdova_motyka": {
+      "textures": "textures/items/smaragdova_motyka"
+    },
+    "smaragdova_helma": {
+      "textures": "textures/items/smaragdova_helma"
+    },
+    "smaragdovy_kyrys": {
+      "textures": "textures/items/smaragdovy_kyrys"
+    },
+    "smaragdove_kalhoty": {
+      "textures": "textures/items/smaragdove_kalhoty"
+    },
+    "smaragdove_boty": {
+      "textures": "textures/items/smaragdove_boty"
+    }
+  }
+}

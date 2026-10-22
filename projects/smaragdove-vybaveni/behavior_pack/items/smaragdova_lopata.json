@@ -1,0 +1,55 @@
+{
+  "format_version": "1.26.40",
+  "minecraft:item": {
+    "description": {
+      "identifier": "factory:smaragdova_lopata",
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.shovel"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "item.factory:smaragdova_lopata.name"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "smaragdova_lopata"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:durability": {
+        "max_durability": 1405
+      },
+      "minecraft:enchantable": {
+        "slot": "shovel",
+        "value": 10
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["minecraft:emerald"],
+            "repair_amount": 351
+          }
+        ]
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:damage": 3,
+      "minecraft:tags": {
+        "tags": ["minecraft:is_shovel", "minecraft:diamond_tier"]
+      },
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "q.any_tag('sand', 'dirt', 'gravel', 'snow', 'snow_layer', 'clay')"
+            },
+            "speed": 7
+          }
+        ]
+      },
+      "factory:smaragdove_pouziti": {}
+    }
+  }
+}

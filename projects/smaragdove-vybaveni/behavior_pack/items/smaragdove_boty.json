@@ -1,0 +1,45 @@
+{
+  "format_version": "1.26.40",
+  "minecraft:item": {
+    "description": {
+      "identifier": "factory:smaragdove_boty",
+      "menu_category": {
+        "category": "equipment",
+        "group": "minecraft:itemGroup.name.boots"
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "item.factory:smaragdove_boty.name"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "smaragdove_boty"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:durability": {
+        "max_durability": 386
+      },
+      "minecraft:enchantable": {
+        "slot": "armor_feet",
+        "value": 10
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["minecraft:emerald"],
+            "repair_amount": 96
+          }
+        ]
+      },
+      "minecraft:wearable": {
+        "slot": "slot.armor.feet",
+        "protection": 3
+      },
+      "minecraft:tags": {
+        "tags": ["minecraft:diamond_tier", "minecraft:is_boots"]
+      }
+    }
+  }
+}

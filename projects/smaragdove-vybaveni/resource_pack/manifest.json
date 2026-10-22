@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Smaragdové vybavení",
+    "description": "Kompletní smaragdová sada: pět nástrojů a čtyři části brnění",
+    "uuid": "c1877160-37e6-436d-abba-313c1ae56789",
+    "version": [1, 1, 0],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "be3fcc01-369d-4611-b388-2aae016dc070",
+      "version": [1, 1, 0]
+    }
+  ]
+}
