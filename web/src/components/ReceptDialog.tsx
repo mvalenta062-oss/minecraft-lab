@@ -77,8 +77,8 @@ export function ReceptDialog({ projekt, zavrit }: { projekt: Projekt | null; zav
           >
             →
           </Typography>
-          <Tooltip title="1× Dřevěný kyrys">
-            <Box role="img" aria-label="Výsledek: jeden dřevěný kyrys" sx={policko}>
+          <Tooltip title={`1× ${recept?.vysledek ?? ""}`}>
+            <Box role="img" aria-label={`Výsledek: 1× ${recept?.vysledek ?? ""}`} sx={policko}>
               <Box
                 component="img"
                 src={projekt?.nahled}
@@ -90,7 +90,7 @@ export function ReceptDialog({ projekt, zavrit }: { projekt: Projekt | null; zav
         </Stack>
         <Typography>{recept?.popis}</Typography>
         <Typography color="text.secondary" sx={{ mt: 2 }}>
-          V tvořivé hře kyrys najdeš rovnou v inventáři. Úplný přehled jeho vlastností najdeš na kartě výtvoru pod
+          V tvořivé hře najdeš výsledek receptu rovnou v inventáři. Úplný přehled vlastností najdeš na kartě výtvoru pod
           tlačítkem Podrobnosti.
         </Typography>
       </DialogContent>

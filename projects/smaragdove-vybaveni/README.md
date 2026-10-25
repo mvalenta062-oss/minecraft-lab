@@ -99,14 +99,14 @@ krumpáče včetně násady pod zelenou hlavou. Jednotlivé mechaniky krumpáče
 samostatně potvrzené. Uživatel 22. 10. 2026 potvrdil, že autor rozšířený balíček
 1.1.0 vyzkoušel ve hře a moc se mu líbí. První herní zkouška celé sady na Windows
 tedy proběhla; rozsah jednotlivých zkoušek mechanik a nošeného brnění nebyl
-upřesněn. iPad zatím neověřen.
+upřesněn. Uživatel 25. 10. 2026 potvrdil také funkčnost doplňku na iPadu.
 
 Kontrola doplňku, sestavení, kontrola kódu, TypeScript a šest izolovaných testů
 použití nových nástrojů prošly 22. 10. 2026. Textury vizuálně zkontrolovány.
 Izolované testy používají napodobeninu herního rozhraní, nenahrazují herní test.
 Verze 1.1.0 byla 22. 10. 2026 úspěšně nasazena do místního Minecraftu.
 Další krok: podle dalšího hraní doladit případné připomínky; před sdílením
-ověřit zbývající mechaniky a kompatibilitu na iPadu.
+ověřit zbývající jednotlivé mechaniky. Windows i iPad jsou potvrzené uživatelem.
 
 Kontroly: `npm run bedrock:validate -- smaragdove-vybaveni`,
 `npm run bedrock:build -- smaragdove-vybaveni`, `npm run lint`,

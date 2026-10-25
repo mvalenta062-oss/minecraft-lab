@@ -53,6 +53,19 @@
       ],
       "url": "smaragdove-vybaveni.mcaddon",
       "velikost": 20572
+    },
+    {
+      "id": "super-zbrane",
+      "nazev": "Super zbraně",
+      "popis": "Pirátská bambitka s ohnivými vybuchujícími koulemi",
+      "verze": "1.0.3",
+      "minecraft": "1.26.40",
+      "packy": [
+        "behavior_pack",
+        "resource_pack"
+      ],
+      "url": "super-zbrane.mcaddon",
+      "velikost": 8458
     }
   ]
 }

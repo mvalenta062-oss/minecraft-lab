@@ -77,6 +77,7 @@ export interface Projekt {
   rezimy?: ("creative" | "survival")[];
   /** Podrobný recept otevřený z karty; mezera znamená prázdné políčko. */
   recept?: {
+    vysledek: string;
     radky: string[];
     suroviny: Record<string, { nazev: string; obrazek: string }>;
     popis: string;
@@ -84,6 +85,49 @@ export interface Projekt {
 }
 
 export const PROJEKTY: Projekt[] = [
+  {
+    nazev: "Super zbraně",
+    popis:
+      "Prvním kouskem nové sady je pirátská bambitka. Měď, prkna a křesadlo promění v ohnivé koule, malé krátery a pořádné dobrodružství!",
+    stav: "hotovo",
+    odkazStazeni: `${import.meta.env.BASE_URL}addony/super-zbrane.mcaddon`,
+    odkazZdroj: "https://github.com/mvalenta062-oss/minecraft-lab/tree/main/projects/super-zbrane",
+    nahled: `${import.meta.env.BASE_URL}images/super-zbrane.png`,
+    rezimy: ["creative", "survival"],
+    platformy: [
+      { platforma: "windows", overeno: true },
+      { platforma: "ipad", overeno: false },
+    ],
+    podrobnosti: [
+      {
+        nadpis: "První ze Super zbraní",
+        text: "Pirátská bambitka má měděnou hlaveň, dřevěnou rukojeť a křesadlo. Vyrobíš ji na pracovním stole nebo v kreativním inventáři vyhledáš Pirátská bambitka. Další zbraně chceme do stejného balíčku postupně přidávat. Zapni balíček chování i vzhledu; experimenty nejsou potřeba.",
+      },
+      {
+        nadpis: "Jedna žhavá koule",
+        text: "Použitím předmětu vystřelíš jednu ohnivou kouli. Letí rovně rychlostí 20,8 bloku za sekundu, nejvýše 48 bloků. Další výstřel je možný za dvě sekundy. Munice je zatím neomezená a bambitka se neopotřebovává.",
+      },
+      {
+        nadpis: "Výbuch a oheň",
+        text: "Při nárazu do tvora nebo bloku koule vybuchne, může udělat malý kráter a zapálit okolí. Výsledek závisí na materiálu. Blízký výbuch může zasáhnout i střelce. Voda kouli uhasí. Zkoušej ji dál od svých staveb.",
+      },
+      {
+        nadpis: "Lov a portál",
+        text: "Zasažené tvory se bambitka pokusí zapálit před výbuchem, aby z lovu mohlo vypadnout upečené maso. Umí také rozpoznat úplný obsidiánový rám a zásahem u otvoru aktivovat portál do Netheru místo výbuchu.",
+      },
+    ],
+    recept: {
+      vysledek: "Pirátská bambitka",
+      radky: ["KMM", "DM ", "D  "],
+      suroviny: {
+        K: { nazev: "Celé křesadlo", obrazek: `${import.meta.env.BASE_URL}images/kresadlo.svg` },
+        M: { nazev: "Měděný ingot", obrazek: `${import.meta.env.BASE_URL}images/medeny-ingot.svg` },
+        D: { nazev: "Libovolná prkna", obrazek: `${import.meta.env.BASE_URL}images/prkna.svg` },
+      },
+      popis:
+        "Na pracovním stole použij jedno celé křesadlo, tři měděné ingoty a dvě libovolná prkna podle obrázku. Křesadlo se spotřebuje. Výsledkem je jedna pirátská bambitka.",
+    },
+  },
   {
     nazev: "Smaragdové vybavení",
     popis:
@@ -95,12 +139,12 @@ export const PROJEKTY: Projekt[] = [
     rezimy: ["creative", "survival"],
     platformy: [
       { platforma: "windows", overeno: true },
-      { platforma: "ipad", overeno: false },
+      { platforma: "ipad", overeno: true },
     ],
     podrobnosti: [
       {
         nadpis: "Devět zelených kousků",
-        text: "Meč, krumpáč, sekera, lopata, motyka, helma, kyrys, kalhoty a boty. V kreativním inventáři vyhledej Smaragd. Brnění je zelené také po oblečení.",
+        text: "Meč, krumpáč, sekera, lopata, motyka, helma, kyrys, kalhoty a boty. V kreativním inventáři vyhledej Smaragd. Brnění je zelené také po oblečení. Zapni balíček chování i vzhledu; experimenty nejsou potřeba.",
         predmety: [
           ["Meč", "smaragdovy_mec"],
           ["Krumpáč", "smaragdovy_krumpac"],
@@ -131,10 +175,6 @@ export const PROJEKTY: Projekt[] = [
       {
         nadpis: "Opravy a očarování",
         text: "Vybavení můžeš běžně očarovat a opravovat smaragdy na kovadlině. Jeden smaragd obnoví přibližně čtvrtinu výdrže daného kusu.",
-      },
-      {
-        nadpis: "Vyzkoušeno na Windows",
-        text: "Celá sada prošla první herní zkouškou v Minecraft Bedrock na Windows a autorovi se moc líbí. Jednotlivé mechaniky ještě průběžně ověřujeme. iPad zatím není otestovaný. Zapni balíček chování i vzhledu; experimenty nejsou potřeba.",
       },
     ],
   },
@@ -171,10 +211,6 @@ export const PROJEKTY: Projekt[] = [
       {
         nadpis: "Bouchnutí bez kráteru",
         text: "Otevření doprovází zvuk a obláček. Samotné bouchnutí nezraňuje a neničí okolní bloky.",
-      },
-      {
-        nadpis: "Ověřeno ve hře",
-        text: "Vzhled, otevření i rozšířený výběr odměn jsme ověřili v Minecraft Bedrock na Windows. Uživatel potvrdil také úspěšnou zkoušku na iPadu. Experimenty nejsou potřeba.",
       },
     ],
   },
@@ -218,6 +254,7 @@ export const PROJEKTY: Projekt[] = [
       { platforma: "ipad", overeno: true },
     ],
     recept: {
+      vysledek: "Dřevěný kyrys",
       radky: ["DDD", "DSD", "D D"],
       suroviny: {
         D: { nazev: "Libovolné poleno", obrazek: `${import.meta.env.BASE_URL}images/poleno.svg` },
@@ -239,7 +276,6 @@ export const PROJEKTY: Projekt[] = [
         nadpis: "Duhové stavění",
         text: "Polož ji jako běžnou kostičku a stav podle fantazie. Duhové proužky a barevné skvrnky má na všech stranách.",
       },
-      { nadpis: "Ověřeno ve hře", text: "Funguje v Minecraft Bedrock na Windows i na iPadu." },
     ],
     stav: "hotovo",
     odkazStazeni: `${import.meta.env.BASE_URL}addony/duhova-hlina.mcaddon`,
@@ -264,13 +300,22 @@ export interface Zapis {
 
 export const DENIK: Zapis[] = [
   {
+    datum: "2026-10-25",
+    nadpis: "Super zbraně začínají pirátskou bambitkou",
+    text: `Máťa vymyslel sadu **Super zbraně** a její první kousek: bambitku z mědi, prken a celého křesadla. Má střílet ohnivé vybuchující koule a dělat malé krátery.
+
+Nejdřív obrázek připomínal rybářský prut. Přidali jsme detaily, měděnou hlaveň a spoušť. Pak jsme přímo ve hře ladili směr držení, opakovanou střelbu a nárazy do stromů a země. Z několika plamenů nakonec vznikla **jedna kompaktní žhavá koule**. Po úpravě ústí už se bambitka líbí i svému autorovi!
+
+**Vzhled a základní střelba jsou vyzkoušené na Windows.** Připravili jsme také zapalování obsidiánového portálu do Netheru. Recept po opravě, průchod portálem, upečenou kořist a iPad ještě budeme samostatně ověřovat.`,
+  },
+  {
     datum: "2026-10-22",
     nadpis: "Smaragdy patří i do výbavy!",
     text: `Co kdyby šlo diamantové vybavení vyrábět ze **smaragdů**? Máťa chtěl zelenou sadu, která bude o trochu slabší než diamantová. Domluvili jsme se na přibližně **10 % menší výdrži** a pustili se do meče a krumpáče.
 
 Při zkoušení Máťa odhalil i drobnosti v kresbě: zelenající dřevo, krátkou násadu a její zvláštní konec. Ladili jsme jednotlivé pixely, až dřevo přirozeně procházelo pod zelenou hlavou krumpáče.
 
-Pak přibyla sekera, lopata, motyka a všechny čtyři části brnění. **Celá smaragdová sada už prošla první zkouškou ve hře na Windows a má úspěch!** Recepty známe z diamantového vybavení, jen v nich vyměníme kámen. Další podrobnosti mechanik budeme ověřovat při hraní; iPad zatím čeká.`,
+Pak přibyla sekera, lopata, motyka a všechny čtyři části brnění. **Celá smaragdová sada už prošla první zkouškou ve hře na Windows a má úspěch!** Recepty známe z diamantového vybavení, jen v nich vyměníme kámen. Další podrobnosti mechanik budeme ověřovat při hraní. Dodatečně jsme 25. 10. potvrdili také funkčnost na iPadu.`,
   },
   {
     datum: "2026-10-17",
