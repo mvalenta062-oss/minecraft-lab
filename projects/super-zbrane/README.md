@@ -1,7 +1,7 @@
 # Super zbraně
 
 Rozšiřitelná sada zbraní pro Minecraft Bedrock. Prvním kusem je **Pirátská
-bambitka** s měděnou hlavní, dřevěnou rukojetí a křesadlem. Aktuální verze: 1.0.3.
+bambitka** s měděnou hlavní, dřevěnou rukojetí a křesadlem. Aktuální verze: 1.0.4.
 Vzhled je pixelová textura 32 × 32 v inventáři i v ruce, ne samostatný 3D model.
 
 ## Jak funguje
@@ -29,7 +29,7 @@ D . .
 ```
 
 K = celé křesadlo (spotřebuje se), M = měděný ingot, D = libovolná prkna.
-Výsledek je jedna bambitka. Recept je nastaven jako vždy odemčený.
+Výsledek je jedna bambitka. Recept se v knize receptů odemkne získáním měděného ingotu.
 
 ## Zapnutí a vyzkoušení
 
@@ -51,8 +51,11 @@ Výsledek je jedna bambitka. Recept je nastaven jako vždy odemčený.
   a spouštění se vše kromě vzhledu ústí a velikosti plamenů jevilo v pořádku.
   Kompaktní částici i konečný vzhled 1.0.3 následně potvrdil ve hře.
 - Recept původně nefungoval ani se správným rozložením a dubovými prkny.
-  Verze 1.0.3 přidává výslovné odemčení a používá formát oficiálních receptů.
-  Samostatné potvrzení výroby po této opravě zatím nemáme.
+  Content Log potvrdil, že hra odmítá odemčení přes kontext AlwaysUnlocked.
+  Verze 1.0.4 používá běžnou podmínku získání měděného ingotu, stejným
+  způsobem jako oficiální recepty a ostatní doplňky v projektu.
+  Uživatel potvrdil funkční výrobu (fungovala již před touto opravou).
+  Nový Content Log po nasazení 1.0.4 neobsahuje chyby receptu ani skriptu.
 - Aktivace portálu, průchod a upečená kořist nejsou samostatně potvrzené ve hře.
   iPad není otestovaný. Cílové verze jsou v `bedrock/nastaveni.json`;
   skutečná nainstalovaná verze hry nebyla ověřena.
@@ -71,3 +74,7 @@ Formáty vycházejí z dokumentace
 [částic](https://learn.microsoft.com/en-us/minecraft/creator/reference/content/particlesreference/examples/particlecomponents/particle_appearance_billboard?view=minecraft-bedrock-stable),
 [výbuchů](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/explosionoptions?view=minecraft-bedrock-stable)
 a [oficiálního receptu s prkny](https://raw.githubusercontent.com/Mojang/bedrock-samples/main/behavior_pack/recipes/stick.json).
+
+Po aktualizaci receptu znovu načti svět, vezmi měděný ingot do inventáře a
+zkus původní recept s novým křesadlem a dubovými prkny. Zkontroluj Content Log,
+že se už neobjevuje „invalid unlock ingredient“ u `factory:bambitka`.
