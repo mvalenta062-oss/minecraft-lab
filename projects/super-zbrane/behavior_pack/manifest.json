@@ -4,27 +4,27 @@
     "name": "Super zbraně",
     "description": "Pirátská bambitka s ohnivými vybuchujícími koulemi",
     "uuid": "8dd27704-1177-487e-bbfa-f9883bdb25ee",
-    "version": [1, 0, 4],
+    "version": [1, 0, 5],
     "min_engine_version": [1, 26, 40]
   },
   "modules": [
     {
       "type": "data",
       "uuid": "85f87191-7b57-4a72-b1d3-858175eaa8bf",
-      "version": [1, 0, 4]
+      "version": [1, 0, 5]
     },
     {
       "type": "script",
       "language": "javascript",
       "entry": "scripts/main.js",
       "uuid": "814715c3-6b9b-4835-a6a4-01f3921259af",
-      "version": [1, 0, 4]
+      "version": [1, 0, 5]
     }
   ],
   "dependencies": [
     {
       "uuid": "34421e00-8606-458a-972e-2163d2f3e8a3",
-      "version": [1, 0, 4]
+      "version": [1, 0, 5]
     },
     {
       "module_name": "@minecraft/server",

@@ -1,7 +1,7 @@
 # Super zbraně
 
 Rozšiřitelná sada zbraní pro Minecraft Bedrock. Prvním kusem je **Pirátská
-bambitka** s měděnou hlavní, dřevěnou rukojetí a křesadlem. Aktuální verze: 1.0.4.
+bambitka** s měděnou hlavní, dřevěnou rukojetí a křesadlem. Aktuální verze: 1.0.5.
 Vzhled je pixelová textura 32 × 32 v inventáři i v ruce, ne samostatný 3D model.
 
 ## Jak funguje
@@ -56,14 +56,19 @@ Výsledek je jedna bambitka. Recept se v knize receptů odemkne získáním měd
   způsobem jako oficiální recepty a ostatní doplňky v projektu.
   Uživatel potvrdil funkční výrobu (fungovala již před touto opravou).
   Nový Content Log po nasazení 1.0.4 neobsahuje chyby receptu ani skriptu.
+- Verze 1.0.5 zjednodušuje detekci nárazů: paprsek i záchytný cyklus mají
+  stejný vzor, políčko hlavy střelce se vynechává a let koule se zastaví
+  s hlášením, pokud políčko hlavy nelze určit. Uživatel potvrdil funkčnost ve hře.
 - Aktivace portálu, průchod a upečená kořist nejsou samostatně potvrzené ve hře.
   iPad není otestovaný. Cílové verze jsou v `bedrock/nastaveni.json`;
   skutečná nainstalovaná verze hry nebyla ověřena.
-- Prošly `bedrock:validate`, `bedrock:build`, `lint` a 17 testů skriptu:
+- Prošly `bedrock:validate`, `bedrock:build`, `lint` a 23 testů skriptu:
   `node --test projects/super-zbrane/strelba.test.mjs`.
   Testy používají náhradu herního rozhraní, nenahrazují test v Minecraftu.
 - Záložní detekce nárazů kontroluje neprázdná políčka po 0,05 bloku,
   takže u rostlin a neúplných bloků může reagovat i na prázdnou část políčka.
+  Políčko, ve kterém koule začíná, se vynechává, aby výstřel z vysoké trávy,
+  lián nebo řasy nevybuchl u hlavy střelce.
 - Další krok: potvrdit výrobu, portál a kořist; potom test na iPadu.
 
 Textury a náhledy obnoví `node projects/super-zbrane/vytvor-texturu.mjs`.

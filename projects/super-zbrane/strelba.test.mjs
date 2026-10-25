@@ -19,7 +19,7 @@ const kod = buildSync({
   format: "cjs",
 }).outputFiles[0].text;
 
-function hra({ blok = () => "minecraft:air", mobX, chybaOhne = false } = {}) {
+function hra({ blok = () => "minecraft:air", paprsek = () => undefined, mobX, chybaOhne = false } = {}) {
   const behy = new Map();
   const fronta = [];
   const exploze = [];
@@ -29,10 +29,16 @@ function hra({ blok = () => "minecraft:air", mobX, chybaOhne = false } = {}) {
   let dalsi = 1;
   const dim = {
     id: "overworld",
-    getBlockFromRay: () => undefined, // Úmyslně selhávající raycast: test záložní detekce.
+    getBlockFromRay: paprsek, // Výchozí stav nic nenajde: test záložní detekce.
     getBlock(p) {
       const typeId = blok(p);
-      return { typeId, isAir: typeId === "minecraft:air", isLiquid: typeId === "minecraft:water" };
+      if (typeId === undefined) return undefined;
+      return {
+        typeId,
+        isAir: typeId === "minecraft:air",
+        isLiquid: typeId === "minecraft:water",
+        location: { x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) },
+      };
     },
     getEntitiesFromRay(p, smer, { maxDistance }) {
       const distance = mobX - p.x;
@@ -169,6 +175,76 @@ test("Dvě události použití nevytvoří dvě koule", () => {
   h.klik();
   h.tick(5);
   assert.equal(h.exploze.length, 1);
+});
+test("Výstřel z vysoké trávy nevybuchne u hlavy, trávu před sebou zasáhne", () => {
+  const h = hra({ blok: (p) => (p.x < 1 || p.x >= 3 ? "minecraft:tall_grass" : "minecraft:air") });
+  h.klik();
+  h.tick(10);
+  assert.equal(h.exploze.length, 1);
+  assert.ok(h.exploze[0].x >= 3 && h.exploze[0].x < 3.1);
+});
+test("Koule uvnitř bloku mimo hlavu střelce vybuchne hned", () => {
+  // Blok se objeví až po prvním ticku kolem koule (např. píst), ne u hlavy.
+  let tick = 0;
+  const h = hra({ blok: (p) => (tick >= 2 && p.x >= 1 && p.x < 2 ? "minecraft:stone" : "minecraft:air") });
+  h.klik();
+  h.tick(1);
+  tick = 2;
+  h.tick(1);
+  assert.equal(h.exploze.length, 1);
+  assert.ok(Math.abs(h.exploze[0].x - 1.04) < 1e-8);
+});
+test("Nález paprsku mimo dosah kroku nezastaví záložní cyklus", () => {
+  // Paprsek vidí až zeď na x = 5, cyklus má zachytit políčko na x = 3 (např. list, který paprsek minul).
+  const h = hra({
+    blok: (p) => (p.x >= 3 && p.x < 4 ? "minecraft:oak_leaves" : "minecraft:air"),
+    paprsek: (misto) => ({
+      block: { typeId: "minecraft:stone", isAir: false, isLiquid: false, location: { x: 5, y: 2, z: 0 } },
+      faceLocation: { x: 0, y: 2 - Math.floor(misto.y) + (misto.y - Math.floor(misto.y)), z: 0 },
+    }),
+  });
+  h.klik();
+  h.tick(10);
+  assert.equal(h.exploze.length, 1);
+  assert.ok(h.exploze[0].x >= 3 && h.exploze[0].x < 3.1);
+});
+test("Nález paprsku v dosahu kroku má přednost před cyklem", () => {
+  const h = hra({
+    blok: (p) => (p.x >= 3 ? "minecraft:stone" : "minecraft:air"),
+    paprsek: (misto) => {
+      const d = 3 - misto.x;
+      return d <= 2
+        ? {
+            block: { typeId: "minecraft:stone", isAir: false, isLiquid: false, location: { x: 3, y: 2, z: 0 } },
+            faceLocation: { x: 0, y: misto.y - 2, z: misto.z },
+          }
+        : undefined;
+    },
+  });
+  h.klik();
+  h.tick(10);
+  assert.equal(h.exploze.length, 1);
+  assert.ok(Math.abs(h.exploze[0].x - 3) < 1e-8);
+});
+test("Tvor dál než jeden krok počká na další tick", () => {
+  const h = hra({ mobX: 1.5 });
+  h.klik();
+  h.tick(1);
+  assert.equal(h.exploze.length, 0);
+  h.tick(1);
+  assert.equal(h.exploze.length, 1);
+  assert.ok(Math.abs(h.exploze[0].x - 1.5) < 1e-8);
+});
+test("Hlava mimo svět: bez výstřelu, bez cooldownu, bez běžící koule", () => {
+  const h = hra({ blok: (p) => (p.x < 1 ? undefined : "minecraft:air"), mobX: 2 });
+  h.klik();
+  h.tick(5);
+  assert.equal(h.exploze.length, 0);
+  assert.equal(h.behy.size, 0);
+  assert.equal(h.castice.length, 0);
+  h.klik(); // Cooldown nebyl nastaven, další pokus hned projde stejnou cestou.
+  h.tick(1);
+  assert.equal(h.behy.size, 0);
 });
 test("Voda kouli uhasí", () => {
   const h = hra({ blok: (p) => (p.x >= 3 ? "minecraft:water" : "minecraft:air") });
