@@ -281,46 +281,104 @@ const portalKod = buildSync({
 }).outputFiles[0].text;
 const portalModul = { exports: {} };
 vm.runInNewContext(portalKod, { module: portalModul, exports: portalModul.exports });
-const { najdiPortal } = portalModul.exports;
+const { obsluzPortal } = portalModul.exports;
 
-function ram({ osa = "x", sirka = 2, vyska = 3, chybi = false, prekazka = false, end = false } = {}) {
-  const blocks = new Map();
-  const bod = (u, y) => (osa === "x" ? { x: u, y, z: 0 } : { x: 0, y, z: u });
-  const key = (p) => `${Math.floor(p.x)},${Math.floor(p.y)},${Math.floor(p.z)}`;
-  for (let u = 1; u <= sirka; u++) for (const y of [0, vyska + 1]) blocks.set(key(bod(u, y)), "minecraft:obsidian");
-  for (let y = 1; y <= vyska; y++) for (const u of [0, sirka + 1]) blocks.set(key(bod(u, y)), "minecraft:obsidian");
-  if (chybi) blocks.delete(key(bod(0, 2)));
-  if (prekazka) blocks.set(key(bod(1, 2)), "minecraft:stone");
-  return {
-    dim: {
-      id: end ? "minecraft:the_end" : "minecraft:overworld",
-      getBlock: (p) => ({ typeId: blocks.get(key(p)) ?? "minecraft:air" }),
+function okoliPortal(bloky, id = "minecraft:overworld") {
+  const mapa = new Map(bloky.map(([x, y, z, typ]) => [`${x},${y},${z}`, typ]));
+  const ohen = [];
+  let cteni = 0;
+  const dim = {
+    id,
+    getBlock(p) {
+      cteni++;
+      const location = { x: Math.floor(p.x), y: Math.floor(p.y), z: Math.floor(p.z) };
+      const key = `${location.x},${location.y},${location.z}`;
+      const typeId = mapa.get(key) ?? "minecraft:air";
+      return {
+        location,
+        typeId,
+        isAir: typeId === "minecraft:air",
+        setType(typ) {
+          ohen.push(location);
+          mapa.set(key, typ);
+        },
+      };
     },
-    zasah: bod(1, 0),
   };
+  return { dim, ohen, cteni: () => cteni };
 }
-for (const osa of ["x", "z"])
-  test(`Portál v ose ${osa}, bez rohů, nejmenší i největší rám`, () => {
+
+test("Běžný blok portál vůbec nehledá", () => {
+  const h = okoliPortal([]);
+  assert.equal(obsluzPortal(h.dim, { typeId: "minecraft:dirt" }), false);
+  assert.equal(h.cteni(), 0);
+});
+test("Přímý zásah aktivního portálu nečte okolí ani nevybuchuje", () => {
+  const h = okoliPortal([]);
+  assert.equal(obsluzPortal(h.dim, { typeId: "minecraft:portal" }), true);
+  assert.equal(h.cteni(), 0);
+  assert.equal(h.ohen.length, 0);
+});
+test("Osamělý obsidián nezapálí svůj vršek", () => {
+  const h = okoliPortal([[0, 0, 0, "minecraft:obsidian"]]);
+  assert.equal(obsluzPortal(h.dim, h.dim.getBlock({ x: 0, y: 0, z: 0 })), true);
+  assert.equal(h.ohen.length, 0);
+});
+
+function ramPortal(osa = "x", sirka = 2, vyska = 3, aktivni = false) {
+  const blocks = [];
+  const bod = (u, y) => (osa === "x" ? [u, y, 0] : [0, y, u]);
+  for (let u = 0; u < sirka + 2; u++) for (const y of [0, vyska + 1]) blocks.push([...bod(u, y), "minecraft:obsidian"]);
+  for (let y = 1; y <= vyska; y++) for (const u of [0, sirka + 1]) blocks.push([...bod(u, y), "minecraft:obsidian"]);
+  if (aktivni)
+    for (let u = 1; u <= sirka; u++) for (let y = 1; y <= vyska; y++) blocks.push([...bod(u, y), "minecraft:portal"]);
+  return { h: okoliPortal(blocks), bod };
+}
+for (const osa of ["x", "z"]) {
+  test(`Každý blok rámu v ose ${osa} zapálí pouze patu otvoru`, () => {
     for (const [sirka, vyska] of [
       [2, 3],
       [21, 21],
     ]) {
-      const { dim, zasah } = ram({ osa, sirka, vyska });
-      const p = najdiPortal(dim, zasah);
-      assert.equal(p?.osa, osa);
-      assert.equal(p?.body.length, sirka * vyska);
+      const { bod } = ramPortal(osa, sirka, vyska);
+      const zasahy = [];
+      for (let u = 0; u < sirka + 2; u++) for (const y of [0, vyska + 1]) zasahy.push(bod(u, y));
+      for (let y = 1; y <= vyska; y++) for (const u of [0, sirka + 1]) zasahy.push(bod(u, y));
+      for (const [x, y, z] of zasahy) {
+        const { h } = ramPortal(osa, sirka, vyska);
+        obsluzPortal(h.dim, h.dim.getBlock({ x, y, z }));
+        assert.equal(h.ohen.length, 1, `zásah ${x},${y},${z}`);
+        assert.equal(h.ohen[0].y, 1);
+        const u = osa === "x" ? h.ohen[0].x : h.ohen[0].z;
+        assert.ok(u >= 1 && u <= sirka);
+      }
     }
   });
-for (const volby of [
-  { chybi: true },
-  { prekazka: true },
-  { end: true },
-  { sirka: 1 },
-  { sirka: 22 },
-  { vyska: 2 },
-  { vyska: 22 },
-])
-  test(`Neplatný rám se nezapálí: ${JSON.stringify(volby)}`, () => {
-    const { dim, zasah } = ram(volby);
-    assert.equal(najdiPortal(dim, zasah), undefined);
+  test(`Aktivní rám v ose ${osa} nevytvoří další oheň`, () => {
+    for (const [x, y, z] of [
+      [0, 2, 0],
+      [1, 4, 0],
+      [1, 0, 0],
+    ]) {
+      const { h } = ramPortal(osa, 2, 3, true);
+      const hit = osa === "x" ? { x, y, z } : { x: z, y, z: x };
+      obsluzPortal(h.dim, h.dim.getBlock(hit));
+      assert.equal(h.ohen.length, 0);
+    }
   });
+}
+
+test("Obsidián s aktivním portálem jej nikdy nepřepíše", () => {
+  const h = okoliPortal([
+    [0, 0, 0, "minecraft:obsidian"],
+    [0, 1, 0, "minecraft:portal"],
+  ]);
+  obsluzPortal(h.dim, h.dim.getBlock({ x: 0, y: 0, z: 0 }));
+  assert.equal(h.ohen.length, 0);
+});
+test("V Endu zásah obsidiánu nezapaluje a nevybuchuje", () => {
+  const h = okoliPortal([], "minecraft:the_end");
+  assert.equal(obsluzPortal(h.dim, { typeId: "minecraft:obsidian", location: { x: 0, y: 0, z: 0 } }), true);
+  assert.equal(h.cteni(), 0);
+  assert.equal(h.ohen.length, 0);
+});

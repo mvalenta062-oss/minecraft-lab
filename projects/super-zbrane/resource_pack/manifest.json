@@ -4,14 +4,14 @@
     "name": "Super zbraně",
     "description": "Měděná pirátská bambitka",
     "uuid": "34421e00-8606-458a-972e-2163d2f3e8a3",
-    "version": [1, 0, 5],
+    "version": [1, 0, 7],
     "min_engine_version": [1, 26, 40]
   },
   "modules": [
     {
       "type": "resources",
       "uuid": "21421e70-7a9d-4358-b420-01e8be96bfd8",
-      "version": [1, 0, 5]
+      "version": [1, 0, 7]
     }
   ]
 }

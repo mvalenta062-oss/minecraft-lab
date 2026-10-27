@@ -1,14 +1,6 @@
-import {
-  BlockPermutation,
-  system,
-  world,
-  type Block,
-  type Dimension,
-  type Entity,
-  type Vector3,
-} from "@minecraft/server";
+import { system, world, type Block, type Dimension, type Entity, type Vector3 } from "@minecraft/server";
 
-import { najdiPortal } from "./portal";
+import { obsluzPortal } from "./portal";
 
 const RYCHLOST = 1.04;
 const MAX_DOLET = 48;
@@ -82,13 +74,6 @@ function najdiTvora(dim: Dimension, misto: Vector3, smer: Vector3, krok: number,
 }
 
 function vybuch(dim: Dimension, misto: Vector3, strelec: Entity) {
-  const portal = najdiPortal(dim, misto);
-  if (portal) {
-    const vypln = BlockPermutation.resolve("minecraft:portal", { portal_axis: portal.osa });
-    for (const bod of portal.body) dim.getBlock(bod)?.setPermutation(vypln);
-    dim.playSound("fire.ignite", misto);
-    return; // Zapálení rámu bez výbuchu, aby právě vzniklý portál nezhasl.
-  }
   // Zapálit před výbuchem: běžná kořist hořících zvířat pak může být upečená.
   for (const tvor of dim.getEntities({ location: misto, maxDistance: SILA * 2 })) {
     try {
@@ -135,7 +120,7 @@ function vystrel(strelec: Entity) {
       }
       if (blok) {
         system.clearRun(beh);
-        if (!blok.blok.isLiquid) vybuch(dim, blok.bod, strelec); // Voda kouli uhasí.
+        if (!blok.blok.isLiquid && !obsluzPortal(dim, blok.blok)) vybuch(dim, blok.bod, strelec); // Voda kouli uhasí a portal je specifický
         return;
       }
       misto = posun(misto, smer, krok);

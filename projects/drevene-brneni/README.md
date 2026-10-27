@@ -1,4 +1,4 @@
-# Dřevěné brnění — aktualizace 1.2.0
+# Dřevěné brnění — aktualizace 1.2.1
 
 Dřevěný kyrys s péřovou podšívkou. Vzhled tvoří dřevěné pláty, vystouplá hruď a ramenní chrániče; na textuře už není pírko. Identifikátor `factory:drevena_kosile` a UUID obou balíčků zůstávají stejné, takže jde o aktualizaci původního doplňku. Název předmětu je nově Dřevěný kyrys.
 
@@ -49,3 +49,19 @@ Odsouhlaseno autorem: nezničitelnost, bez vlastní ochrany proti jedu, bez zák
 Kontroly: `npm run bedrock:validate -- drevene-brneni`, `npm run bedrock:build -- drevene-brneni`, `node --test "projects/drevene-brneni/test/*.test.js"`, `npm run lint`.
 
 Reference: [úprava původního zranění](https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/entityhurtbeforeevent?view=minecraft-bedrock-stable), [vlastní model vybavení](https://learn.microsoft.com/en-us/minecraft/creator/documents/attachables?view=minecraft-bedrock-stable).
+
+## Oprava 1.2.1 (27. 10. 2026)
+
+Content Log ze hry hlásil, že `factory:zabodnuty_sip` nelze vytvořit, protože
+`is_summonable` bylo vypnuté. Povolené vytvoření přes `spawnEntity` opravuje
+dekoraci. `is_spawnable` zůstává vypnuté, šíp nemá nové vajíčko v inventáři.
+Testovací náhrada `spawnEntity` nyní kontroluje skutečnou definici entity,
+aby testy zachytily i tento rozpor mezi skriptem a JSON.
+
+Po nasazení znovu načti svět, obleč kyrys a nech se zasáhnout šípem.
+Ověř viditelný zapíchnutý šíp, zmizení po 20 sekundách i po sundání kyrysu
+a nepřítomnost hlášky „is not summonable“ v novém Content Logu.
+Tato oprava zatím není potvrzená ve hře. Nejnovější dostupný log z 27. 10.
+uvádí ještě načtenou 1.2.0, proto nepotvrzuje zkoušku opravy 1.2.1.
+
+Kontrola doplňku, sestavení, všech 18 testů a kontrola kódu po opravě 1.2.1 prošly.

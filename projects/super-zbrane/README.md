@@ -1,7 +1,7 @@
 # Super zbraně
 
 Rozšiřitelná sada zbraní pro Minecraft Bedrock. Prvním kusem je **Pirátská
-bambitka** s měděnou hlavní, dřevěnou rukojetí a křesadlem. Aktuální verze: 1.0.5.
+bambitka** s měděnou hlavní, dřevěnou rukojetí a křesadlem. Aktuální verze: 1.0.7.
 Vzhled je pixelová textura 32 × 32 v inventáři i v ruce, ne samostatný 3D model.
 
 ## Jak funguje
@@ -14,9 +14,11 @@ Vzhled je pixelová textura 32 × 32 v inventáři i v ruce, ne samostatný 3D m
 - Živé tvory do 3 bloků od nárazu se pokusí zapálit na 5 sekund před výbuchem.
   U lovu očekáváme běžnou upečenou kořist hořících zvířat; voda, déšť a odolnost
   proti ohni ovlivňují zapálení. Výbuch či oheň může kořist také zničit.
-- Zásah úplného obsidiánového rámu u otvoru aktivuje portál do Netheru místo
-  výbuchu. Vnitřek musí být prázdný nebo s ohněm, široký 2–21 a vysoký 3–21
-  bloků. Rohy nejsou povinné. Funguje v obou osách; v Endu se neaktivuje.
+- Zásah rámu zkusí zapálit jen patu jeho otvoru, bez ohně na vršku.
+  U zásahu se hledá pouze svislá mezera mezi obsidiánovým dnem a stropem
+  (výška 3–21 bloků); úplnost rámu a zapálení posoudí Minecraft.
+  Skript nevytváří fialové bloky. Přímý zásah portálu ani obsidiánu
+  nevybuchne. V Endu se obsidián nezapaluje.
 
 ## Recept
 
@@ -42,8 +44,11 @@ Výsledek je jedna bambitka. Recept se v knize receptů odemkne získáním měd
 4. Pravým tlačítkem vystřel do hlíny a kmene dál od sebe. Zkontroluj náraz,
    kráter, oheň a opakovanou střelbu bez levého tlačítka. Vyzkoušej vodu.
 5. V survivalu ověř recept s dubovými prkny a lov za sucha včetně kořisti.
-6. Postav rám 4 × 5 bloků (otvor 2 × 3) a střel na spodní obsidián u otvoru.
-   Ověř fialovou výplň i skutečný průchod do Netheru.
+6. Postav nový prázdný rám 4 × 5 bloků (otvor 2 × 3) a střel na spodní
+   obsidián u otvoru. Ověř celou fialovou výplň i průchod do Netheru. Potom
+   opakovaně zasáhni aktivní výplň a její rám: přímé zásahy je nemají zhasnout.
+   Vyzkoušej i bok rámu, druhou orientaci a neúplný rám (může hořet, ale
+   nesmí vytvořit osamělé fialové bloky).
 
 ## Ověření a omezení
 
@@ -59,7 +64,21 @@ Výsledek je jedna bambitka. Recept se v knize receptů odemkne získáním měd
 - Verze 1.0.5 zjednodušuje detekci nárazů: paprsek i záchytný cyklus mají
   stejný vzor, políčko hlavy střelce se vynechává a let koule se zastaví
   s hlášením, pokud políčko hlavy nelze určit. Uživatel potvrdil funkčnost ve hře.
-- Aktivace portálu, průchod a upečená kořist nejsou samostatně potvrzené ve hře.
+- Verze 1.0.5: uživatel 27. 10. 2026 nahlásil náhodné dílčí portálové bloky
+  a zhasnutí portálu při zásahu. Původní skript zapisoval fialové bloky
+  jednotlivě a už aktivní výplň nepoznával; mohla tedy následovat exploze.
+- Verze 1.0.6 odstranila ruční stavbu portálu i hledání celého rámu.
+  Běžný blok kontrolou okamžitě projde bez čtení okolí; jen obsidián hledá
+  místo pro oheň v pěti sloupcích u zásahu, nejvýše 21 bloků dolů.
+  Uživatel potvrdil aktivaci celého portálu ve hře; některé zásahy však
+  zapalovaly jen vršek rámu.
+- Verze 1.0.7 vybírá jen patu otvoru mezi obsidiánovým dnem a stropem.
+  Testy zahrnují zásah každého bloku malého i největšího rámu v obou osách
+  a ověřují, že jediný oheň vznikne dole. Aktivní výplň se nepřepisuje.
+  Uživatel 27. 10. 2026 po zkoušce uvedl, že se chování jeví v pořádku.
+  Nový Content Log potvrzuje načtení 1.0.7 bez chyb a varování.
+  Samostatný rozsah zkoušky průchodu a opakovaných zásahů nebyl upřesněn.
+- Upečená kořist není samostatně potvrzená ve hře.
   iPad není otestovaný. Cílové verze jsou v `bedrock/nastaveni.json`;
   skutečná nainstalovaná verze hry nebyla ověřena.
 - Prošly `bedrock:validate`, `bedrock:build`, `lint` a 23 testů skriptu:
@@ -69,7 +88,7 @@ Výsledek je jedna bambitka. Recept se v knize receptů odemkne získáním měd
   takže u rostlin a neúplných bloků může reagovat i na prázdnou část políčka.
   Políčko, ve kterém koule začíná, se vynechává, aby výstřel z vysoké trávy,
   lián nebo řasy nevybuchl u hlavy střelce.
-- Další krok: potvrdit výrobu, portál a kořist; potom test na iPadu.
+- Další krok: doladit případné připomínky, potvrdit kořist a test na iPadu.
 
 Textury a náhledy obnoví `node projects/super-zbrane/vytvor-texturu.mjs`.
 `nahled-herni-textury.png` ukazuje zrcadlenou texturu používanou ve hře,

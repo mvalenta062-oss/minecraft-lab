@@ -10,6 +10,9 @@ const zdroj = readFileSync(new URL("../behavior_pack/scripts/sipy.ts", import.me
 const kod = transformSync(zdroj.replace(/^import .*?;\s*/gm, "").replace("export function", "function"), {
   loader: "ts",
 }).code;
+const popisEntity = JSON.parse(
+  readFileSync(new URL("../behavior_pack/entities/zabodnuty_sip.json", import.meta.url), "utf8"),
+)["minecraft:entity"].description;
 function dilna() {
   let krok, odchod, smrt;
   const fronta = [],
@@ -23,7 +26,9 @@ function dilna() {
   };
   const dimension = {
     id: "overworld",
-    spawnEntity: () => {
+    spawnEntity: (id) => {
+      assert.equal(id, popisEntity.identifier);
+      if (!popisEntity.is_summonable) throw new Error("Dekorace šípu má zakázané vytvoření pomocí spawnEntity");
       const e = {
         isValid: true,
         dimension,
