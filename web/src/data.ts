@@ -113,7 +113,7 @@ export const PROJEKTY: Projekt[] = [
       },
       {
         nadpis: "Lov a portál",
-        text: "Zasažené tvory se bambitka pokusí zapálit před výbuchem, aby z lovu mohlo vypadnout upečené maso. Umí také rozpoznat úplný obsidiánový rám a zásahem u otvoru aktivovat portál do Netheru místo výbuchu.",
+        text: "Zasažené tvory se bambitka pokusí zapálit před výbuchem, aby z lovu mohlo vypadnout upečené maso. Zásah obsidiánového rámu zapaluje jen spodek otvoru; platnost rámu a aktivaci portálu do Netheru řídí Minecraft. Přímý zásah obsidiánu nebo aktivní portálové výplně nevybuchne.",
       },
     ],
     recept: {
@@ -299,6 +299,15 @@ export interface Zapis {
 }
 
 export const DENIK: Zapis[] = [
+  {
+    datum: "2026-10-27",
+    nadpis: "Portál zapalujeme odspodu",
+    text: `Pirátská bambitka dostala další zkoušku: **zapalování portálu do Netheru**. Původní pokus někdy vytvořil jen osamělou fialovou kostku a další zásah mohl portál zhasnout. Přestali jsme proto skládat portálové bloky sami a nechali zapálení na Minecraftu.
+
+Pak jsme si všimli, že zásah horního rámu někdy zapálí jen oheň na střeše. Bambitka teď hledá **patu otvoru mezi obsidiánovým dnem a stropem** a zapaluje pouze tam. Přímý zásah obsidiánu ani aktivní výplně nevybuchuje. Po poslední zkoušce se chování jeví v pořádku a nový herní log bambitky je bez chyb.
+
+V logu jsme našli také důvod, proč dřevěný kyrys nedokázal zobrazit zapíchnuté šípy: jejich dekorace měla zakázané vytvoření skriptem. Opravu jsme připravili v **Dřevěném brnění 1.2.1**; její samostatné ověření ve hře nás ještě čeká. Ke stažení přibývají oba aktualizované balíčky, včetně **Super zbraní 1.0.7**.`,
+  },
   {
     datum: "2026-10-25",
     nadpis: "Super zbraně začínají pirátskou bambitkou",

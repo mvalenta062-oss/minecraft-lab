@@ -6,14 +6,14 @@
       "id": "drevene-brneni",
       "nazev": "Dřevěné brnění",
       "popis": "Dřevěný kyrys: údery, střely, výbuchy a očarování",
-      "verze": "1.2.0",
+      "verze": "1.2.1",
       "minecraft": "1.26.40",
       "packy": [
         "behavior_pack",
         "resource_pack"
       ],
       "url": "drevene-brneni.mcaddon",
-      "velikost": 35934
+      "velikost": 35936
     },
     {
       "id": "duhova-hlina",
@@ -58,14 +58,14 @@
       "id": "super-zbrane",
       "nazev": "Super zbraně",
       "popis": "Pirátská bambitka s ohnivými vybuchujícími koulemi",
-      "verze": "1.0.5",
+      "verze": "1.0.7",
       "minecraft": "1.26.40",
       "packy": [
         "behavior_pack",
         "resource_pack"
       ],
       "url": "super-zbrane.mcaddon",
-      "velikost": 8655
+      "velikost": 8344
     }
   ]
 }
